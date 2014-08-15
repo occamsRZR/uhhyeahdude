@@ -16,7 +16,7 @@ development:
   adapter:  postgresql
   host:     localhost
   encoding: unicode
-  database: uhhyeahdude_development
+  database: current_development
   pool:     5
   username: postgres
   password: toor
@@ -45,7 +45,7 @@ test:
   adapter:  postgresql
   host:     localhost
   encoding: unicode
-  database: uhhyeahdude_test
+  database: current_test
   pool:     5
   username: postgres
   password: toor
@@ -55,7 +55,7 @@ production:
   adapter:  postgresql
   host:     localhost
   encoding: unicode
-  database: uhhyeahdude_production
+  database: current_production
   pool:     5
   username: postgres
   password: toor
