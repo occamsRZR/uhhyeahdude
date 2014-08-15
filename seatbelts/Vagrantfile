@@ -1,0 +1,40 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure("2") do |config|
+  config.vm.define "uyd-dev", primary: true do |dev|
+    dev.vm.box = 'seatbelts-14.04'
+    dev.vm.network :forwarded_port, guest: 3000, host: 3036
+    dev.vm.network :private_network, ip: "33.33.33.6"
+    dev.vm.synced_folder '../', '/home/vagrant/uyd/current', type: 'nfs'
+    # all of the
+    dev.vm.provision :chef_solo do |chef|
+      chef.json = {
+        :seatbelts => {
+          user: "vagrant",
+          rails_env: "development"
+        },
+        :authorization => {
+          :sudo => {
+            :users => ['vagrant'],
+            :include_sudoers_d => true,
+            :passwordless => true
+          }
+        }
+      }
+
+      chef.run_list = [
+          "recipe[seatbelts::default]",
+          "recipe[seatbelts::packages]",
+          "recipe[seatbelts::database]",
+          "recipe[seatbelts::webserver]"
+      ]
+    end
+
+  end
+  config.vm.hostname = "seatbelts-berkshelf"
+  config.vm.box = "ubuntu-14.04-seatbelts"
+  config.vm.box_url = "https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-amd64-vbox.box"
+  config.omnibus.chef_version = :latest
+  config.vm.boot_timeout = 120
+  config.berkshelf.enabled = true 
+end

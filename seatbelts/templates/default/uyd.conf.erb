@@ -1,0 +1,20 @@
+Eye.application '<%= node.seatbelts.site_name %>' do
+  working_dir '<%= node['seatbelts']['deploy_path'] %>'
+  trigger :flapping, times: 10, within: 1.minute, retry_in: 10.minutes
+  check :cpu, every: 10.seconds, below: 100, times: 3 # global check for all processes	
+ 
+ <%= node['seatbelts']['puma_instances'] %>.times do |i|
+    process("puma_#{i}") do
+      pid_file "#{app.working_dir}/tmp/pids/puma.#{i}.pid"
+      start_command "<%= node.seatbelts.site_name %>_puma -e production -d -b unix://#{app.working_dir}/tmp/sockets/puma.#{i}.sock --pidfile #{app.working_dir}/tmp/pids/puma.#{i}.pid"
+      stop_command  "<%= node.seatbelts.site_name %>_pumactl --pidfile #{app.working_dir}/tmp/pids/puma.#{i}.pid stop"
+
+      # logs
+      stdout "#{app.working_dir}/log/puma.#{i}.out.log"
+      stderr "#{app.working_dir}/log/puma.#{i}.error.log"
+      start_timeout 60.seconds
+      stop_grace 60.seconds
+  #    uid = process.gid = '<%= node['seatbelts']['user'] %>'
+    end
+  end
+end
