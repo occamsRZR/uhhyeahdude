@@ -1,0 +1,12 @@
+source 'https://rubygems.org'
+
+group :development do
+  gem 'berkshelf', github: 'berkshelf/berkshelf'
+  gem 'debugger'
+end
+
+group :plugins do
+  gem 'vagrant-berkshelf', '2.0.1'
+  gem 'vagrant-omnibus', '1.4.1'
+  gem 'hashie', '< 3.0'
+end

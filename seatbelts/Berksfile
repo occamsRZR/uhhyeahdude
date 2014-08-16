@@ -1,0 +1,13 @@
+site :opscode
+
+metadata
+cookbook 'oh_my_zsh', git: 'https://github.com/shingara/oh-my-zsh-chef.git'
+cookbook 'nginx', '~> 2.5.0'
+cookbook 'rvm', :git => 'git://github.com/fnichol/chef-rvm.git', ref: '485e042'
+cookbook 'database', '~> 2.2.0'
+cookbook 'postgresql', git: 'https://github.com/SimonKaluza/postgresql.git'
+cookbook 'sudo'
+cookbook 'phantomjs'
+cookbook 'imagemagick'
+cookbook 'eye', git: 'https://github.com/occamsRZR/eye-chef-cookbook'
+cookbook 'swap'

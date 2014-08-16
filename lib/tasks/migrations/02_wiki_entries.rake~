@@ -1,0 +1,9 @@
+namespace :migrations do
+  task :wiki_entries => :environment do
+    Episodes.all.each do |episode|
+      epi_number = episode.number.to_s.rjust(3, '0')
+      doc = Nokogiri::HTML(open("http://uhhyeahdude.com/index.php/wiki/Episode_001"))
+      
+    end
+  end
+end

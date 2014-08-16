@@ -1,0 +1,87 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure("2") do |config|
+  config.vm.define "uyd-dev", primary: true do |dev|
+    dev.vm.box = 'seatbelts-14.04'
+    dev.vm.network :forwarded_port, guest: 3000, host: 3036
+    dev.vm.network :private_network, ip: "33.33.33.6"
+    dev.vm.synced_folder '../', '/home/vagrant/uyd/current', type: 'nfs'
+    # all of the
+    dev.vm.provision :chef_solo do |chef|
+      chef.json = {
+        :seatbelts => {
+          user: "vagrant",
+          rails_env: "development"
+        },
+        :authorization => {
+          :sudo => {
+            :users => ['vagrant'],
+            :include_sudoers_d => true,
+            :passwordless => true
+          }
+        }
+      }
+
+      chef.run_list = [
+          "recipe[seatbelts::default]",
+          "recipe[seatbelts::packages]",
+          "recipe[seatbelts::database]",
+          "recipe[seatbelts::webserver]"
+      ]
+    end
+
+  end
+  # Production
+  config.vm.define "uyd-pro", primary: true do |pro|
+    pro.vm.box_url = "https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box"
+    pro.vm.synced_folder '../', '/home/vagrant/uyd/current', type: 'nfs'
+    pro.vm.provider :aws do |aws, override|
+      aws.access_key_id = ENV['AWS_ACCESS_KEY_ID']
+      aws.secret_access_key = ENV['AWS_SECRET_KEY']
+      aws.region = "us-west-2"
+      aws.instance_type = "t1.micro"
+      aws.ami = "ami-6ac2a85a"
+      override.ssh.username = "ubuntu"
+      override.ssh.private_key_path = "keys/uyd-archive.pem"
+      aws.keypair_name = "uyd-archive"
+      aws.security_groups = [ 'uyd-appserver' ]
+      aws.tags = {
+        Name: "uyd-productionserver"
+      }
+    end
+    pro.vm.synced_folder '../', '/home/vagrant/uyd/current', type: 'nfs'
+    # all of the
+    pro.vm.provision :chef_solo do |chef|
+      chef.json = {
+        :seatbelts => {
+          user: "ubuntu",
+          rails_env: "production"
+        },
+        :authorization => {
+          :sudo => {
+            :users => ['ubuntu'],
+            :include_sudoers_d => true,
+            :passwordless => true
+          }
+        }
+      }
+
+      chef.run_list = [
+          "recipe[seatbelts::default]",
+          "recipe[seatbelts::packages]",
+          "recipe[seatbelts::database]",
+          "recipe[seatbelts::webserver]"
+      ]
+    end
+
+  end
+
+
+
+  config.vm.hostname = "seatbelts-berkshelf"
+  config.vm.box = "ubuntu-14.04-seatbelts"
+  config.vm.box_url = "https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-amd64-vbox.box"
+  config.omnibus.chef_version = :latest
+  config.vm.boot_timeout = 120
+  config.berkshelf.enabled = true 
+end
