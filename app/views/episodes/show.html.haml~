@@ -1,0 +1,2 @@
+%h3= "Episode #{@episode.number}"
+.description= @episode.description || "Here's a description"

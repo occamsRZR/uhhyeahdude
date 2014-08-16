@@ -1,0 +1,8 @@
+%h2= "Episode #{@episode.number}"
+%audio.audio{controls: 'controls'}
+  %source{src: @episode.public_url}
+.description= @episode.description || "Here's a description"
+%hr
+.wecks-entry
+  %h3.wecks-header Weck's Entry
+  .wecks-content= @episode.wecks_entry.try(:html_safe)
