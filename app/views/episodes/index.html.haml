@@ -1,0 +1,3 @@
+%h2 Episode Archive
+- @episodes.each do |episode|
+  .episode= link_to "Episode #{episode.number}", episode_path(episode)
