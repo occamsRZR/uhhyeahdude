@@ -26,14 +26,14 @@ end
 
 include_recipe 'rvm'
 # run bundle install and rake db:setup in the context of the rvm gemset
-rvm_shell "bundle_and_setup_database" do
-  ruby_string "2.1.1@#{node.seatbelts.site_name}"
-  user node['seatbelts']['user']
-  cwd node['seatbelts']['deploy_path']
-  code %{bundle install && RAILS_ENV=#{node.seatbelts.rails_env} rake db:migrate}
+#rvm_shell "bundle_and_setup_database" do
+#  ruby_string "2.1.1@#{node.seatbelts.site_name}"
+#  user node['seatbelts']['user']
+#  cwd node['seatbelts']['deploy_path']
+#  code %{bundle install && RAILS_ENV=#{node.seatbelts.rails_env} rake db:migrate}
   # only run if the database is present
-  only_if "psql -l | grep #{node.seatbelts.site_name}_#{node['seatbelts']['rails_env']} | wc -l"
-end
+#  only_if "psql -l | grep #{node.seatbelts.site_name}_#{node['seatbelts']['rails_env']} | wc -l"
+#end
 
 
 # wrapper for pumactl
