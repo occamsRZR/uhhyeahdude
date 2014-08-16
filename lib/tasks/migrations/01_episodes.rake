@@ -8,7 +8,7 @@ namespace :migrations do
       file_name_info = file_name[:episode_file_name].match(/Episode (?<episode_number>\d+) (?<episode_info>.+)\.(mp3|mov)$/)
       file_episode_info = file_name_info[:episode_info]
       begin
-        date_published = DateTime.parse(file_name_info[:episode_date])
+        date_published = DateTime.parse(file_name_info[:episode_info])
         episode = Episode.find_or_create_by(
                      file_name: file_name[:episode_file_name],
                      published_at: date_published,
