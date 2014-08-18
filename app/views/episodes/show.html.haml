@@ -1,8 +1,14 @@
 %h2= "Episode #{@episode.number}"
-%audio.audio{controls: 'controls'}
+%audio.audio{controls: 'controls', preload: 'none'}
   %source{src: @episode.public_url}
 .description= @episode.description
 %hr
-.wecks-entry
-  %h3.wecks-header Weck's Entry
-  .wecks-content= @episode.wecks_entry.try(:html_safe)
+.timestamps
+  - @episode.episode_timestamps.each do |timestamp|
+    .timestamp 
+      %b.timestamp-seconds{data: {timestamp_seconds: timestamp.timestamp}}= timestamp.display_timestamp
+      .timestamp-description= timestamp.description
+%a.wecks-entry.link{ href: "#"} Show Weck's wiki entry
+.wecks-entry.content{ style: "display:none;" }
+  %h3.header Weck's Entry
+  .entry= @episode.wecks_entry.try(:html_safe)

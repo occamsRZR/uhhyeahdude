@@ -346,6 +346,7 @@ DEPENDENCIES
   inherited_resources (~> 1.5.0)
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari
   launchy
   omniauth
   omniauth-facebook

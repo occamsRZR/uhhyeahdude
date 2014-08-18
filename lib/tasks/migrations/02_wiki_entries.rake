@@ -28,12 +28,12 @@ namespace :migrations do
           # Next if there is no topic set
           next if topic_name.eql? "NOTTATOPIC"
           timestamp = ""
-          if p.text[/^(\d+)*:*(\d+):(\d{2})\s*–*-* (.+)$/]
-            hour = $1.to_i
-            minute = $2.to_i
-            second = $3.to_i
+          if p.text[/^((\d+):)?(\d+):?(\d{2})\s*–*-* (.+)$/]
+            hour = $2.to_i
+            minute = $3.to_i
+            second = $4.to_i
             total_seconds = (hour * 3600) + (minute * 60) + second
-            description = $4
+            description = $5
             timestamp = "hour: #{hour} minute: #{minute} second: #{second} #{description}"
             EpisodeTimestamp.find_or_create_by(timestamp: total_seconds,
                                                description: description,
