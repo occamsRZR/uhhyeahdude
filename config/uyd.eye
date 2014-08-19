@@ -1,5 +1,5 @@
 Eye.application 'uyd' do
-  working_dir '/home/vagrant/uyd/current'
+  working_dir '/home/ubuntu/uyd/current'
   trigger :flapping, times: 10, within: 1.minute, retry_in: 10.minutes
   check :cpu, every: 10.seconds, below: 100, times: 3 # global check for all processes	
  
