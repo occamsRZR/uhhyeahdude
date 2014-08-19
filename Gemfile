@@ -24,14 +24,16 @@ gem 'fog'
 gem 'inherited_resources', '~> 1.5.0'
 gem 'has_scope'
 gem 'kaminari'
+gem 'friendly_id', '~> 5.0.0c'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
-  gem 'capistrano', '~> 3.0.1'
+  gem 'capistrano', '~> 3.1'
   gem 'capistrano-bundler'
   gem 'capistrano-rails', '~> 1.1.0'
   gem 'capistrano-rails-console'
   gem 'capistrano-rvm', '~> 0.1.1'
+  gem 'capistrano-eye'
   gem 'html2haml'
   gem 'hub', :require=>nil
   gem 'quiet_assets'
