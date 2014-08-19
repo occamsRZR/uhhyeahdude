@@ -39,7 +39,7 @@ default['rvm']['user_installs'] = [
 # WEBSERVER
 default['nginx']['user'] = node['seatbelts']['user']
 default['nginx']['enable_default_site'] = false
-default['seatbelts']['puma_instances'] = 1
+default['seatbelts']['puma_instances'] = 2
 default['languages']['ruby']['bin_dir'] = node.rvm.default_ruby
 default['eye']['http']['install'] = false
 default['eye']['user'] = node.seatbelts.user

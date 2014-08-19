@@ -4,4 +4,7 @@ class Episode < ActiveRecord::Base
   ##
   # Associations
   has_many :episode_timestamps
+
+  extend FriendlyId
+  friendly_id :title, use: :slugged
 end
