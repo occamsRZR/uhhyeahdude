@@ -28,7 +28,7 @@ FriendlyId.defaults do |config|
   #
   # If you uncomment this, you can do:
   #
-  #    MyModel.find('foo')
+  #  MyModel.find('foo')
   #
   # This is significantly more convenient but may not be appropriate for
   # all applications, so you must explicity opt-in to this behavior. You can
@@ -38,7 +38,7 @@ FriendlyId.defaults do |config|
   # performance because it will avoid Rails-internal code that makes runtime
   # calls to `Module.extend`.
   #
-  # config.use :finders
+  config.use :finders
   #
   # ## Slugs
   #

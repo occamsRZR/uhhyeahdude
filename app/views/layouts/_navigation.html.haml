@@ -7,7 +7,8 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to 'Home', root_path, class: 'navbar-brand'
+      = link_to root_path, class: 'navbar-brand' do
+        .archive-icon= image_tag 'archive-icon.png'
       = link_to 'Episodes', episodes_path, class: 'navbar-brand'
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
