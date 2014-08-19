@@ -2,7 +2,7 @@
   %h2= @episode.title
   %audio.audio{controls: 'controls', preload: 'none'}
     %source{src: @episode.public_url}
-.description= @episode.description
+.description= @episode.description.try(:html_safe)
 %ul.nav.nav-tabs.episode-show{role:"tablist"}
   %li.active= link_to "Timestamps", "#timestamps", role: "tab", data: {toggle: "tab"}
   %li= link_to "Weck's Entry", "#wecks", role: "tab", data: {toggle: "tab"}
