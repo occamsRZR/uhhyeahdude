@@ -30,4 +30,21 @@ namespace :migrations do
                                      })
 
   end
+
+  task :eps_from_rss => :environment do
+    require 'open-uri'
+    doc = Nokogiri::HTML(open('http://feeds.feedburner.com/uhhyeahdude/podcast'))
+    doc.css("item").each do |epi|
+      number = epi.search('title').text.match(/Episode (\d+)/)[1]
+      description = epi.search('description').text
+      url = epi.search('enclosure').first.try(:[], 'url')
+      pubdate = epi.search('pubdate').text
+      episode = Episode.find_or_create_by(number: number)
+      episode.title = "Episode #{number}"
+      episode.description = description
+      episode.public_url = url if url
+      episode.published_at = DateTime.parse(pubdate)
+      episode.save
+    end
+  end
 end
