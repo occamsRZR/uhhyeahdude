@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/sudosu/rails_admin_pundit.git
+  revision: 285e3e79a37242cf7a527053e9b438782801557a
+  specs:
+    rails_admin_pundit (0.0.1)
+      pundit (>= 0.2.3)
+      rails_admin (>= 0.6.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -365,6 +373,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 4.1.4)
   rails_admin
+  rails_admin_pundit!
   rails_layout
   rspec-rails
   sass-rails (~> 4.0.3)
