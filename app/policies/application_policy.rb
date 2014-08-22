@@ -2,7 +2,7 @@ class ApplicationPolicy
   attr_reader :user, :record
 
   def initialize(user, record)
-    @user = user
+    @current_user = user
     @record = record
   end
 
@@ -41,23 +41,23 @@ class ApplicationPolicy
   def rails_admin?(action)
     case action
       when :dashboard
-        user.admin?
+        @current_user.admin?
       when :index
-        user.admin?
+        @current_user.admin?
       when :show
-        user.admin?
+        @current_user.admin?
       when :new
-        user.admin?
+        @current_user.admin?
       when :edit
-        user.admin?
+        @current_user.admin?
       when :destroy
-        user.admin?
+        @current_user.admin?
       when :export
-        user.admin?
+        @current_user.admin?
       when :history
-        user.admin?
+        @current_user.admin?
       when :show_in_app
-        user.admin?
+        @current_user.admin?
       else
         raise ::Pundit::NotDefinedError, "unable to find policy #{action} for #{record}."
     end

@@ -1,6 +1,7 @@
 class EpisodeTimestamp < ActiveRecord::Base
   belongs_to :episode
   default_scope { order(timestamp: :asc) }
+  acts_as_taggable_on :topics
 
   def display_timestamp
     mm, ss = timestamp.divmod(60)
