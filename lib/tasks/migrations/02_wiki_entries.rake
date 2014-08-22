@@ -35,10 +35,14 @@ namespace :migrations do
             total_seconds = (hour * 3600) + (minute * 60) + second
             description = $5
             timestamp = "hour: #{hour} minute: #{minute} second: #{second} #{description}"
-            EpisodeTimestamp.find_or_create_by(timestamp: total_seconds,
+            episode_timestamp = EpisodeTimestamp.find_or_create_by(timestamp: total_seconds,
                                                description: description,
                                                episode: episode
                                                )
+            episode.topic_list.add(topic_name)
+            episode.save
+            episode_timestamp.topic_list.add(topic_name)
+            episode_timestamp.save
             full_timestamp += 1
           elsif p.text[/^(\d{2})*:*(\d{2}):(\d{2})/]
             hour = $1
