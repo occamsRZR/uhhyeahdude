@@ -3,6 +3,7 @@
   h2 {
   }
   audio {
+    width: 100%;
   } 
 }
 
@@ -13,5 +14,8 @@ ul.nav.nav-tabs.episode-show {
 .tab-content {
   padding-left: 8px;
   padding-top: 10px;
-  background: white;
+}
+
+#comments {
+  margin-top: 10px;
 }

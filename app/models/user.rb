@@ -2,6 +2,10 @@ class User < ActiveRecord::Base
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
 
+  def can_annotate?
+    admin? or vip?
+  end
+
   def set_default_role
     if User.count == 0
       self.role ||= :admin
