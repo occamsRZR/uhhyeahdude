@@ -2,15 +2,33 @@
   %h2= @episode.title
   %audio.audio{controls: 'controls', preload: 'none'}
     %source{src: @episode.public_url}
-.description= @episode.description.try(:html_safe)
+- if @episode.description
+  .description
+    %b.description-label Description -
+    %i.description-text= @episode.description.try(:html_safe) || "There is no description for this episode yet."
+- unless @episode.topics.empty?
+  .topics
+    %b.topics-label Topics -
+    %i.topic-list= @episode.topic_list.to_sentence || "There are no topics attributed to this episode yet."
 %ul.nav.nav-tabs.episode-show{role:"tablist"}
   %li.active= link_to "Timestamps", "#timestamps", role: "tab", data: {toggle: "tab"}
   %li= link_to "Weck's Entry", "#wecks", role: "tab", data: {toggle: "tab"}
+  %li= link_to "Annotate", "#annotate", role: "tab", data: {toggle: "tab"} if current_user and current_user.can_annotate?
 .tab-content
   .timestamps.tab-pane.active#timestamps
-    - @episode.episode_timestamps.each do |timestamp|
-      .timestamp 
-        %b.timestamp-seconds{data: {timestamp_seconds: timestamp.timestamp}}= timestamp.display_timestamp
-        .timestamp-description= timestamp.description
+    %table.table.table-striped.table-hover.table-responsive
+      %th Timestamp
+      %th Description
+      %th Topic
+      - @episode.episode_timestamps.each do |timestamp|
+        %tr.timestamp 
+          %td.timestamp-seconds{data: {timestamp_seconds: timestamp.timestamp}}= timestamp.display_timestamp
+          %td.timestamp-description= timestamp.description
+          %td.timestamp-topic= timestamp.topic_list
   .wecks-entry.content.tab-pane#wecks
     .entry= @episode.wecks_entry.try(:html_safe)
+  .annotation.tab-pane#annotate
+    %i Here is where you'll be able to add more timestamps.  Feature to be in place by August 24th.
+#comments
+  .fb-comments{data: {href: request.original_url, numposts: "20", colorscheme: "light", width: '100%'} }
+
