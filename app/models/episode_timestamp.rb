@@ -8,6 +8,10 @@ class EpisodeTimestamp < ActiveRecord::Base
   def display_timestamp
     ChronicDuration.output(timestamp, format: :chrono)
   end
+  
+  def topic_list_enum
+    ActsAsTaggableOn::Tag.all.pluck(:name)
+  end
 
   protected
 
@@ -19,7 +23,7 @@ class EpisodeTimestamp < ActiveRecord::Base
       edit do
         field :timestamp, :string
         field :description
-        field :topics
+        field :topic_list, :enum
       end
     end
 end
