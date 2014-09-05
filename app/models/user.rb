@@ -23,5 +23,8 @@ class User < ActiveRecord::Base
       end
     end
   end
-
+  
+  def role_enum
+    %w(user vip admin)
+  end
 end

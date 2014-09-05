@@ -13,5 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require handlebars
+//= require ember
+//= require ember-data
 //= require bootstrap-sprockets
+window.Uyd = Ember.Application.create();
+//= require uyd
 //= require_tree .
+
