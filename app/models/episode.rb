@@ -5,7 +5,7 @@ class Episode < ActiveRecord::Base
   # Associations
   has_many :episode_timestamps
   acts_as_taggable_on :topics
-
+  accepts_nested_attributes_for :episode_timestamps
   extend FriendlyId
   friendly_id :title, use: :slugged
 end
