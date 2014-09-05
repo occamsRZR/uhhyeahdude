@@ -27,6 +27,9 @@ gem 'kaminari'
 gem 'friendly_id', '~> 5.0.0c'
 gem 'rails_admin_pundit', github: "sudosu/rails_admin_pundit"
 gem 'acts-as-taggable-on'
+gem 'ember-rails'
+gem 'ember-source', '1.5.0' # or the version you need
+gem 'chronic_duration'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
