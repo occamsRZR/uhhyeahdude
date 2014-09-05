@@ -13,7 +13,7 @@
 %ul.nav.nav-tabs.episode-show{role:"tablist"}
   %li.active= link_to "Timestamps", "#timestamps", role: "tab", data: {toggle: "tab"}
   %li= link_to "Weck's Entry", "#wecks", role: "tab", data: {toggle: "tab"}
-  %li= link_to "Annotate", "#annotate", role: "tab", data: {toggle: "tab"} if current_user and current_user.can_annotate?
+  %li= link_to "Annotate", "#annotate", role: "tab", data: {toggle: "tab"} # if current_user and current_user.can_annotate?
 .tab-content
   .timestamps.tab-pane.active#timestamps
     %table.table.table-striped.table-hover.table-responsive
@@ -29,6 +29,7 @@
     .entry= @episode.wecks_entry.try(:html_safe)
   .annotation.tab-pane#annotate
     %i Here is where you'll be able to add more timestamps.  Feature to be in place by August 24th.
+    = render partial: 'annotate'
 #comments
   .fb-comments{data: {href: request.original_url, numposts: "20", colorscheme: "light", width: '100%'} }
 
