@@ -8,4 +8,8 @@ class Episode < ActiveRecord::Base
   accepts_nested_attributes_for :episode_timestamps
   extend FriendlyId
   friendly_id :title, use: :slugged
+
+  def wecks_date_format
+    published_at.strftime('%m.%d.%y')
+  end
 end
