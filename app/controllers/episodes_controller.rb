@@ -1,4 +1,5 @@
 class EpisodesController < InheritedResources::Base
+  respond_to :html, :json
   has_scope :by_number, default: :asc, allow_blank: true, only: :index
   has_scope :page
 

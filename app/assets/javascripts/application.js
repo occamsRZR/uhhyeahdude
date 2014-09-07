@@ -17,7 +17,7 @@
 //= require ember
 //= require ember-data
 //= require bootstrap-sprockets
-window.Uyd = Ember.Application.create();
+//= require_self
 //= require uyd
-//= require_tree .
 
+UhhYeahDudeArchive = Ember.Application.create();

@@ -19,6 +19,7 @@ class @GoogleAnalytics
     # If it isn't supported, just track the pageview now.
     if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
       document.addEventListener "page:change", (->
+        debugger
         GoogleAnalytics.trackPageview()
       ), true
     else

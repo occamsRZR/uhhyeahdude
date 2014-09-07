@@ -1,4 +1,4 @@
-Uyd.EpisodeTimestampsNewController = Ember.ObjectController.extend(
+UhhYeahDudeArchive.EpisodeTimestampsNewController = Ember.ObjectController.extend(
   save: ->
     @get('store').commit()
   
