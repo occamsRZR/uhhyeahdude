@@ -20,6 +20,7 @@ class EpisodeTimestamp < ActiveRecord::Base
     end
 
     rails_admin do
+      visible false
       edit do
         field :timestamp, :string
         field :description

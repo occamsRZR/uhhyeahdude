@@ -1,6 +1,14 @@
 class Episode < ActiveRecord::Base
   # I guess you can only set default values for the second argument...
   scope :by_number, -> (cool, way = :asc) { order(number: way) }
+  scope :by_topic, -> (topic) { tagged_with(topic) }
+  
+  # Search stuffs
+  include PgSearch
+  pg_search_scope :search, :associated_against => {
+    episode_timestamps: :description
+  }
+
   ##
   # Associations
   has_many :episode_timestamps
