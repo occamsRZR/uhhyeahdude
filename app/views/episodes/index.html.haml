@@ -1,4 +1,9 @@
 %h2 Episode Archive
+- if params[:by_topic]
+  %h4= "Filtered by topic: #{params[:by_topic]}"
+- if params[:search]
+  %h4= "Searching using keyword: #{params[:search]}"
+= render 'search_bar'
 = paginate @episodes
 %table.table.table-striped.table-hover.table-responsive
   %th Epi Number
