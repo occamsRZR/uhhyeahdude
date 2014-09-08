@@ -1,20 +1,9 @@
-Current
+Uhh Yeah Dude Archives
 ================
 
-This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
-provided by the [RailsApps Project](http://railsapps.github.io/).
+This is the repository for http://archive.uhhyeahdu.de
 
-Rails Composer is open source and supported by subscribers. Please join RailsApps to support development of Rails Composer.
-
-Problems? Issues?
------------
-
-Need help? Ask on Stack Overflow with the tag 'railsapps.'
-
-Your application contains diagnostics in the README file. Please provide a copy of the README file when reporting any issues.
-
-If the application doesn’t work as expected, please [report an issue](https://github.com/RailsApps/rails_apps_composer/issues)
-and include the diagnostics.
+It is written with Ruby on Rails
 
 Ruby on Rails
 -------------
@@ -24,25 +13,41 @@ This application requires:
 - Ruby 2.1.1
 - Rails 4.1.4
 
-Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
 
 Getting Started
 ---------------
 
-Documentation and Support
--------------------------
+Before setting up your vagrant box, be sure to download the [latest version of VirtualBox](https://www.virtualbox.org/wiki/Downloads) and the [latest version of Vagrant](http://www.vagrantup.com/downloads.html)
 
-Issues
--------------
+First, we'll need to go to the directory with the vagrant configuration:
 
-Similar Projects
-----------------
+	cd seatbelts/
 
-Contributing
-------------
+We need to run the following commands to get all of the needed plugins.
 
-Credits
--------
+	vagrant plugin install vagrant-berkshelf --plugin-version=2.0.1
+	vagrant plugin install hashie --plugin-version '< 3.0'
+	vagrant plugin install vagrant-omnibus
 
-License
--------
+We can then boot up our vagrant box:
+
+	vagrant up uyd-dev
+
+The box should be provisioned for you.  If there were some provisioning changes since you `vagrant up`'d the box, we will need to provision:
+
+	vagrant provision uyd-dev
+
+If this step completed without errors, you should be able to `ssh` into the box.
+
+	vagrant ssh uyd-dev
+
+The project is located at `/home/vagrant/uyd/` on the vagrant box.  Go to that directory and prepare the app.
+
+	cd uyd/current
+
+Now you are ready to bundle and setup the database.
+
+	bundle install
+	rake db:setup
+	
+You can now launch the server with `rails s` to start puma.  You can access the box at `33.33.33.6:3000`
