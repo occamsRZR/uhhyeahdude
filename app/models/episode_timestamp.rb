@@ -6,7 +6,7 @@ class EpisodeTimestamp < ActiveRecord::Base
 
 
   def display_timestamp
-    ChronicDuration.output(timestamp, format: :chrono)
+    ChronicDuration.output(timestamp, format: :short)
   end
   
   def topic_list_enum
