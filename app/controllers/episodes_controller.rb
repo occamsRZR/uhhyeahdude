@@ -1,4 +1,5 @@
 class EpisodesController < InheritedResources::Base
+  respond_to :html, :atom
   has_scope :by_number, default: :asc, allow_blank: true, only: :index
   has_scope :page
 
@@ -9,9 +10,13 @@ class EpisodesController < InheritedResources::Base
       render json: nil, status: :unprocessable_entity
     end
   end
-  
+
   protected
     def collection
-      @episodes ||= end_of_association_chain.page(params[:page])
+      if params[:format].eql? "atom"
+        @episodes ||= end_of_association_chain
+      else
+        @episodes ||= end_of_association_chain.page(params[:page])
+      end
     end
 end
