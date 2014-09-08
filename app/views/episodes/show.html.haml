@@ -26,7 +26,9 @@
         %tr.timestamp 
           %td.timestamp-seconds{data: {timestamp_seconds: timestamp.timestamp}}= timestamp.display_timestamp
           %td.timestamp-description= timestamp.description
-          %td.timestamp-topic= link_to timestamp.topic_list.first, episodes_path(by_topic: timestamp.topic_list.first)
+          %td.timestamp-topic
+            - timestamp.topic_list.each do |topic_name|
+              = link_to topic_name, episodes_path(by_topic: topic_name)
   .wecks-entry.content.tab-pane#wecks
     .entry= @episode.wecks_entry.try(:html_safe)
   .annotation.tab-pane#annotate
