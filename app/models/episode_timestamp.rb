@@ -5,8 +5,8 @@ class EpisodeTimestamp < ActiveRecord::Base
   before_validation :parse_timestamp
 
 
-  def display_timestamp
-    ChronicDuration.output(timestamp, format: :short)
+  def display_timestamp(format = :short)
+    ChronicDuration.output(timestamp, format: format)
   end
   
   def topic_list_enum
@@ -20,17 +20,21 @@ class EpisodeTimestamp < ActiveRecord::Base
       self.timestamp = ChronicDuration.parse(timestamp_before_type_cast) if timestamp_before_type_cast.is_a? String
     end
 
-    rails_admin do
-<<<<<<< HEAD
-      object_label_method do
-        :display_timestamp
-      end
+    def object_label
+      "#{display_timestamp(:chrono)} - #{topic_list}"
+    end
 
-=======
+    rails_admin do
+      object_label_method do
+        :object_label
+      end
       visible false
->>>>>>> 907b5d94b0153482059cffa813aebc046225263d
       edit do
-        field :timestamp, :string
+        field :timestamp, :string do
+          formatted_value do
+            bindings[:object].display_timestamp(:chrono)
+          end
+        end
         field :description
         field :topic_list, :enum
       end
