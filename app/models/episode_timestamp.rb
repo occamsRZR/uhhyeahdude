@@ -13,6 +13,7 @@ class EpisodeTimestamp < ActiveRecord::Base
     ActsAsTaggableOn::Tag.all.pluck(:name)
   end
 
+
   protected
 
     def parse_timestamp
@@ -20,6 +21,10 @@ class EpisodeTimestamp < ActiveRecord::Base
     end
 
     rails_admin do
+      object_label_method do
+        :display_timestamp
+      end
+
       edit do
         field :timestamp, :string
         field :description
