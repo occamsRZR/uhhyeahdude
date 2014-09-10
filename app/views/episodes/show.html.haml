@@ -1,11 +1,13 @@
 .episode-title
   %h2= @episode.title
+  %h5.aired-date= "Originally aired #{@episode.wecks_date_format}"
+  %h5= link_to "Download epi", @episode.public_url, download: "uyd-episode-#{@episode.number}_#{@episode.wecks_date_format}.mp3"
   %audio.audio{controls: 'controls', preload: 'none'}
     %source{src: @episode.public_url}
 - if @episode.description
   .description
     %b.description-label Description -
-    %i.description-text= @episode.description.try(:html_safe) || "There is no description for this episode yet."
+    %i.description-text= @episode.description.html_safe
 - unless @episode.topics.empty?
   .topics
     %b.topics-label Topics -
@@ -24,7 +26,9 @@
         %tr.timestamp 
           %td.timestamp-seconds{data: {timestamp_seconds: timestamp.timestamp}}= timestamp.display_timestamp
           %td.timestamp-description= timestamp.description
-          %td.timestamp-topic= timestamp.topic_list
+          %td.timestamp-topic
+            - timestamp.topic_list.each do |topic_name|
+              = link_to topic_name, episodes_path(by_topic: topic_name)
   .wecks-entry.content.tab-pane#wecks
     .entry= @episode.wecks_entry.try(:html_safe)
   .annotation.tab-pane#annotate

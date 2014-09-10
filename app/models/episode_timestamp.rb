@@ -6,7 +6,7 @@ class EpisodeTimestamp < ActiveRecord::Base
 
 
   def display_timestamp
-    ChronicDuration.output(timestamp, format: :chrono)
+    ChronicDuration.output(timestamp, format: :short)
   end
   
   def topic_list_enum
@@ -21,10 +21,14 @@ class EpisodeTimestamp < ActiveRecord::Base
     end
 
     rails_admin do
+<<<<<<< HEAD
       object_label_method do
         :display_timestamp
       end
 
+=======
+      visible false
+>>>>>>> 907b5d94b0153482059cffa813aebc046225263d
       edit do
         field :timestamp, :string
         field :description
