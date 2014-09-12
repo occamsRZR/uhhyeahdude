@@ -1,9 +1,16 @@
 class EpisodeTimestamp < ActiveRecord::Base
-  belongs_to :episode
-  default_scope { order(timestamp: :asc) }
+  belongs_to :episode, inverse_of: :episode_timestamps
+
   acts_as_taggable_on :topics
   before_validation :parse_timestamp
 
+  # Validations
+  ##
+  validates_presence_of :episode, :description
+
+  # Scopes
+  ##
+  default_scope { order(timestamp: :asc) }
 
   def display_timestamp(format = :short)
     ChronicDuration.output(timestamp, format: format)
@@ -21,7 +28,7 @@ class EpisodeTimestamp < ActiveRecord::Base
     end
 
     def object_label
-      "#{display_timestamp(:chrono)} - #{topic_list}"
+      "#{display_timestamp(:chrono)} #{topic_list}"
     end
 
     rails_admin do
@@ -35,7 +42,7 @@ class EpisodeTimestamp < ActiveRecord::Base
             bindings[:object].display_timestamp(:chrono)
           end
         end
-        field :description
+        field :description, :wysihtml5
         field :topic_list, :enum
       end
     end
