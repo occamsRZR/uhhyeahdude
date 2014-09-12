@@ -20,6 +20,7 @@ gem 'puma'
 gem 'pundit'
 gem 'therubyracer', :platform=>:ruby
 gem 'rails_admin'
+gem 'bootstrap-wysihtml5-rails', '0.3.1.24'
 gem 'fog'
 gem 'inherited_resources', '~> 1.5.0'
 gem 'has_scope'

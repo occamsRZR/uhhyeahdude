@@ -11,7 +11,7 @@ class Episode < ActiveRecord::Base
 
   ##
   # Associations
-  has_many :episode_timestamps
+  has_many :episode_timestamps, inverse_of: :episode
   acts_as_taggable_on :topics
   accepts_nested_attributes_for :episode_timestamps
   extend FriendlyId
@@ -20,4 +20,31 @@ class Episode < ActiveRecord::Base
   def wecks_date_format
     published_at.strftime('%m.%d.%y')
   end
+
+  protected 
+
+    rails_admin do
+      configure :episode_timestamps do
+        inverse_of :episode
+      end
+      list do
+        sort_by :number
+        field :title
+        field :number do
+          sort_reverse true
+        end
+        field :published_at
+        field :description
+      end
+      edit do
+        field :title
+        field :description, :wysihtml5
+        field :public_url
+        field :published_at
+        field :number
+        field :wecks_entry
+        field :slug
+        field :episode_timestamps
+      end
+    end
 end
