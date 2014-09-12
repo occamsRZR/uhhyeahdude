@@ -2,8 +2,7 @@
   %h2= @episode.title
   %h5.aired-date= "Originally aired #{@episode.wecks_date_format}"
   %h5= link_to "Download epi", @episode.public_url, download: "uyd-episode-#{@episode.number}_#{@episode.wecks_date_format}.mp3"
-  %audio.audio{controls: 'controls', preload: 'none'}
-    %source{src: @episode.public_url}
+  = render "media"
 - if @episode.description
   .description
     %b.description-label Description -
