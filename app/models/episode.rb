@@ -21,6 +21,10 @@ class Episode < ActiveRecord::Base
     published_at.strftime('%m.%d.%y')
   end
 
+  def media_type_enum
+    %w(audio video)
+  end
+  
   protected 
 
     rails_admin do
@@ -39,6 +43,7 @@ class Episode < ActiveRecord::Base
       edit do
         field :title
         field :description, :wysihtml5
+        field :media_type
         field :public_url
         field :published_at
         field :number
