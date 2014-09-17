@@ -5,8 +5,8 @@
   = render "media"
 - if @episode.description
   .description
-    %b.description-label Description -
-    %i.description-text= @episode.description.html_safe
+    %b.description-label Description
+    .description-text= @episode.description.html_safe
 - unless @episode.topics.empty?
   .topics
     %b.topics-label Topics -
@@ -14,20 +14,22 @@
 %ul.nav.nav-tabs.episode-show{role:"tablist"}
   %li.active= link_to "Timestamps", "#timestamps", role: "tab", data: {toggle: "tab"}
   %li= link_to "Weck's Entry", "#wecks", role: "tab", data: {toggle: "tab"}
-  %li= link_to "Annotate", "#annotate", role: "tab", data: {toggle: "tab"} # if current_user and current_user.can_annotate?
 .tab-content
-  .timestamps.tab-pane.active#timestamps
-    %table.table.table-striped.table-hover.table-responsive
-      %th Timestamp
-      %th Description
-      %th Topic
-      - @episode.episode_timestamps.each do |timestamp|
-        %tr.timestamp 
-          %td.timestamp-seconds{data: {timestamp_seconds: timestamp.timestamp}}= timestamp.display_timestamp
-          %td.timestamp-description= timestamp.description.html_safe
-          %td.timestamp-topic
-            - timestamp.topic_list.each do |topic_name|
-              = link_to topic_name, episodes_path(by_topic: topic_name)
+  - if @episode.episode_timestamps.any?
+    .timestamps.tab-pane.active#timestamps
+      %table.table.table-striped.table-hover.table-responsive
+        %th Timestamp
+        %th Description
+        %th Topic
+        - @episode.episode_timestamps.each do |timestamp|
+          %tr.timestamp 
+            %td.timestamp-seconds{data: {timestamp_seconds: timestamp.timestamp}}= timestamp.display_timestamp
+            %td.timestamp-description= timestamp.description.html_safe
+            %td.timestamp-topic
+              - timestamp.topic_list.each do |topic_name|
+                = link_to topic_name, episodes_path(by_topic: topic_name)
+  - else
+    %i There are no timestamps yet.
   .wecks-entry.content.tab-pane#wecks
     .entry= @episode.wecks_entry.try(:html_safe)
   .annotation.tab-pane#annotate
