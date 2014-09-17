@@ -17,6 +17,8 @@
 //= require ember
 //= require ember-data
 //= require bootstrap-sprockets
+//= require google_analytics
+//= require facebook_comments
 window.Uyd = Ember.Application.create();
 //= require uyd
 //= require_tree .
