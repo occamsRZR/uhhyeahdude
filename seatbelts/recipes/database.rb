@@ -11,7 +11,7 @@
 # It includes the following packages:
 #  - postgresql-client-9.3: client for accessing database
 package 'postgresql-client-9.3'
-
+package 'postgresql-contrib-9.3'
 ##
 # PostgreSQL
 include_recipe 'postgresql::server'
