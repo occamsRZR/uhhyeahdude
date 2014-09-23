@@ -8,6 +8,7 @@ class Episode < ActiveRecord::Base
   pg_search_scope :search, :associated_against => {
     episode_timestamps: :description
   }
+  multisearchable against: :description
 
   ##
   # Associations
