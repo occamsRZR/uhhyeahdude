@@ -1,0 +1,28 @@
+%h2 Episode Archive
+- if params[:by_topic]
+  %h4= "Filtered by topic: #{params[:by_topic]}"
+- if params[:q]
+  %h4= "Searching using keyword: #{params[:q]}"
+= render 'shared/search_bar'
+= paginate @results
+%table.table.table-striped.table-hover.table-responsive
+  - unless @results.empty?
+    %th.col-md-3.col-sm-3 Ep
+    %th.col-md-2.col-sm-2 Date
+    %th.col-md-7.col-sm-7 Excerpt
+  - else
+    %h4 No Results
+  - @results.each do |result|
+    - case result.searchable_type
+
+    - when "Episode"
+      %tr.episode
+        %td.episode-name= link_to "Episode #{result.searchable.number}", episode_path(result.searchable)
+        %td.episode-date= result.searchable.published_at.strftime("%d %b %y")
+        %td.episode-date= result.excerpt.html_safe
+    - when "EpisodeTimestamp"
+      %tr.episode
+        %td.episode-name= link_to "Episode #{result.searchable.episode.number} @ #{result.searchable.display_timestamp}", episode_path(result.searchable.episode)
+        %td.episode-date= result.searchable.episode.published_at.strftime("%d %b %y")
+        %td.episode-date= result.excerpt.html_safe
+= paginate @results
