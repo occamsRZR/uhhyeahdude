@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :episodes do 
     member do
       post :annotate
+      get :dope
+      get :nope
     end
   end
 end
