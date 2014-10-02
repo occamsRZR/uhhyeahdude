@@ -1,7 +1,6 @@
 .episode-title
   %h2= @episode.title
   %h5.aired-date= "Originally aired #{@episode.wecks_date_format}"
-  %h5= link_to "Download epi", @episode.public_url, download: "uyd-episode-#{@episode.number}_#{@episode.wecks_date_format}.mp3"
   = render "media"
 - if @episode.description
   .description
@@ -9,8 +8,26 @@
     .description-text= @episode.description.html_safe
 - unless @episode.topics.empty?
   .topics
-    %b.topics-label Topics -
-    %i.topic-list= @episode.topic_list.to_sentence || "There are no topics attributed to this episode yet."
+    %b.topics-label Topics
+    .topic-list= @episode.topic_list.to_sentence || "There are no topics attributed to this episode yet."
+.action-buttons
+  .col-xs-4.col-md-2
+    = link_to dope_episode_path(@episode) do
+      .dope-link.btn.btn-success.btn-block{class: can_vote}
+        %span.glyphicon.glyphicon-thumbs-up
+        = "Dope - #{@episode.cached_votes_up}"
+  .col-xs-4.col-md-2
+    = link_to nope_episode_path(@episode) do
+      .nope-link.btn.btn-danger.btn-block{class: can_vote }
+        %span.glyphicon.glyphicon-thumbs-down
+        = "Nope - #{@episode.cached_votes_down}"
+  .col-xs-4.col-md-2
+    = link_to(@episode.public_url, download: "uyd-episode-#{@episode.number}_#{@episode.wecks_date_format}.mp3") do
+      .fell-off-link.btn.btn-primary.btn-block
+        %span.glyphicon.glyphicon-download-alt
+        Download
+- unless current_user
+  %i.action-buttons-help Please sign in to vote
 %ul.nav.nav-tabs.episode-show{role:"tablist"}
   %li.active= link_to "Timestamps", "#timestamps", role: "tab", data: {toggle: "tab"}
   %li= link_to "Weck's Entry", "#wecks", role: "tab", data: {toggle: "tab"}
