@@ -13,8 +13,11 @@ class Episode < ActiveRecord::Base
   ##
   # Associations
   has_many :episode_timestamps, inverse_of: :episode
-  acts_as_taggable_on :topics
   accepts_nested_attributes_for :episode_timestamps
+
+  acts_as_votable
+  acts_as_taggable_on :topics
+
   extend FriendlyId
   friendly_id :title, use: :slugged
 

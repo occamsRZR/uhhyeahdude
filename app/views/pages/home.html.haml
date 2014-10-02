@@ -1,5 +1,12 @@
 %h3 Uhh Yeah Dude Archive
 %p= "All episodes found #{link_to 'here.', episodes_path}".html_safe
+%h4 Top 5 Dopest Episodes
+- dopest_five_episodes.each do |episode|
+  .dope-episode= link_to "#{episode.title} - #{episode.cached_votes_up}"
+%h4 Top 5 Nopest Episodes
+- nopest_five_episodes.each do |episode|
+  .dope-episode= link_to "#{episode.title} - #{episode.cached_votes_down}"
+
 %p= "Wiki entries scraped from #{link_to "Weck's wiki", "http://www.uhhyeahdude.com/wiki"}".html_safe
 %p= "Torrent of first 400 epis found #{link_to 'here.', 'http://thepiratebay.se/torrent/9825281/Uhh_Yeah_Dude_(Episodes_1-400)'}".html_safe
 %i seatbelts
