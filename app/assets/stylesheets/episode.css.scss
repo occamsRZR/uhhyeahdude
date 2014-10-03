@@ -23,6 +23,9 @@ ul.nav.nav-tabs.episode-show {
 .action-buttons {
   padding-top: 12px;
   padding-bottom: 42px;
+  .action-button {
+    padding-bottom: 10px;
+  } 
 }
 
 // Search
