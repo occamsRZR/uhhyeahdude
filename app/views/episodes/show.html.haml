@@ -11,17 +11,17 @@
     %b.topics-label Topics
     .topic-list= @episode.topic_list.to_sentence || "There are no topics attributed to this episode yet."
 .action-buttons
-  .col-xs-4.col-md-2
+  .col-xs-12.col-md-2.col-md-offset-3.action-button
     = link_to dope_episode_path(@episode) do
       .dope-link.btn.btn-success.btn-block{class: can_vote}
         %span.glyphicon.glyphicon-thumbs-up
         = "Dope - #{@episode.cached_votes_up}"
-  .col-xs-4.col-md-2
+  .col-xs-12.col-md-2.action-button
     = link_to nope_episode_path(@episode) do
       .nope-link.btn.btn-danger.btn-block{class: can_vote }
         %span.glyphicon.glyphicon-thumbs-down
         = "Nope - #{@episode.cached_votes_down}"
-  .col-xs-4.col-md-2
+  .col-xs-12.col-md-2.action-button
     = link_to(@episode.public_url, download: "uyd-episode-#{@episode.number}_#{@episode.wecks_date_format}.mp3") do
       .fell-off-link.btn.btn-primary.btn-block
         %span.glyphicon.glyphicon-download-alt
