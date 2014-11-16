@@ -10,6 +10,6 @@
   %th Date
   - @episodes.each do |episode|
     %tr.episode
-      %td.episode-name= link_to "Episode #{episode.number}", episode_path(episode)
+      %td.episode-name= link_to episode.title, episode_path(episode)
       %td.episode-date= episode.published_at.strftime("%d %b %y")
 = paginate @episodes
