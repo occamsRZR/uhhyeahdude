@@ -1,7 +1,7 @@
 class Episode < ActiveRecord::Base
   # I guess you can only set default values for the second argument...
-  scope :by_number, -> (cool, way = :asc) { order(number: way) }
-  scope :by_topic, -> (topic) { tagged_with(topic) }
+  scope :by_number, ->(cool, way = :asc) { order(number: way).order(slug: way) }
+  scope :by_topic, ->(topic) { tagged_with(topic) }
   
   # Search stuffs
   include PgSearch
@@ -21,6 +21,8 @@ class Episode < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: :slugged
 
+  paginates_per 100
+  
   def wecks_date_format
     published_at.strftime('%m.%d.%y')
   end
