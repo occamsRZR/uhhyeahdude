@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '~> 2.1.0', engine: "rbx", engine_version: "2.3.0"
+ruby '2.1.1'
 gem 'rails', '4.1.4'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
@@ -35,7 +35,6 @@ gem 'pg_search'
 gem 'acts_as_votable'
 group :development do
   gem 'better_errors'
-  gem 'binding_of_caller', :platforms=>[:mri_21]
   gem 'capistrano', '~> 3.1'
   gem 'capistrano-bundler'
   gem 'capistrano-rails', '~> 1.1.0'
