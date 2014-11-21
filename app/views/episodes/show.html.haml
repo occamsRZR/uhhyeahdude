@@ -1,6 +1,19 @@
 .episode-title
   %h2= @episode.title
   %h5.aired-date= "Originally aired #{@episode.wecks_date_format}"
+  .playback-buttons.col-md-12
+    - if @episode.prev
+      .col-xs-12.col-md-3.action-button
+        = link_to episode_path(@episode.prev) do
+          .btn.btn-primary.btn-block
+            %span.glyphicon.glyphicon-step-backward
+              Prev
+    - if @episode.next            
+      .col-xs-12.col-md-3.action-button
+        = link_to episode_path(@episode.next) do
+          .btn.btn-primary.btn-block
+            Next
+            %span.glyphicon.glyphicon-step-forward
   = render "media"
 - if @episode.description
   .description
@@ -10,6 +23,7 @@
   .topics
     %b.topics-label Topics
     .topic-list= @episode.topic_list.to_sentence || "There are no topics attributed to this episode yet."
+
 .action-buttons
   .col-xs-12.col-md-2.col-md-offset-3.action-button
     = link_to dope_episode_path(@episode) do
