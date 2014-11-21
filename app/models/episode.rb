@@ -31,6 +31,18 @@ class Episode < ActiveRecord::Base
     %w(audio video)
   end
   
+  def prev
+    Episode.where(Episode.arel_table[:number].lt(self.number))
+      .order(number: :desc)
+      .order(slug: :desc).first
+  end
+
+  def next
+    Episode.where(Episode.arel_table[:number].gt(self.number))
+      .order(number: :asc)
+      .order(slug: :asc).first
+  end
+
   protected 
 
     rails_admin do
