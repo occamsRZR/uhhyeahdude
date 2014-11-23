@@ -1,7 +1,7 @@
 .episode-title
   %h2= @episode.title
   %h5.aired-date= "Originally aired #{@episode.wecks_date_format}"
-  .playback-buttons.col-md-8.col-md-offset-4
+  .playback-buttons.action-buttons.col-md-8.col-md-offset-4
     - if @episode.prev
       .col-xs-12.col-md-3.action-button
         = link_to episode_path(@episode.prev) do
