@@ -70,9 +70,12 @@
   .fb-comments{data: {href: request.original_url, numposts: "20", colorscheme: "light", width: '100%'} }
 
 - content_for :facebook_meta do
-  %meta{property: "og:title", content: "UYD #@episode.title" }
+  %meta{property: "og:title", content: "UYD #{@episode.title}" }
   - unless @episode.description.blank?
     %meta{property: "og:description", content: truncate(@episode.description, length: 75, omission: "...", separator: " ")}
+  - else
+    %meta{property: "og:description", content: "The Uhh Yeah Dude dancecast #{@episode.title}"}
+  %meta{property: "og:image", content: image_url('uyd-fb-meta.jpg')}
 
 - content_for :title do 
   UYD #{@episode.title}
