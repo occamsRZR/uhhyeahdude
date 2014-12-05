@@ -44,11 +44,11 @@ class Episode < ActiveRecord::Base
       .order(slug: :asc).first
   end
 
-  def parse_timestamp
+  def parse_timestamps
     unparsed = 0
     nodescription = 0
     full_timestamp = 0
-    doc = Nokogiri::HTML(episode.wecks_entry)
+    doc = Nokogiri::HTML(wecks_entry)
     topic_name = "NOTTATOPIC"
     doc.css("p").each do |p|
       # Next if this is just the category episode thing
@@ -69,10 +69,10 @@ class Episode < ActiveRecord::Base
         timestamp = "hour: #{hour} minute: #{minute} second: #{second} #{description}"
         episode_timestamp = EpisodeTimestamp.find_or_create_by(timestamp: total_seconds,
                                                                description: description,
-                                                               episode: episode
+                                                               episode: self
                                                               )
-        episode.topic_list.add(topic_name)
-        episode.save
+        topic_list.add(topic_name)
+        save
         episode_timestamp.topic_list.add(topic_name)
         episode_timestamp.save
         full_timestamp += 1
