@@ -69,7 +69,7 @@ class Episode < ActiveRecord::Base
         timestamp = "hour: #{hour} minute: #{minute} second: #{second} #{description}"
         episode_timestamp = EpisodeTimestamp.find_or_create_by(timestamp: total_seconds,
                                                                description: description,
-                                                               episode: episode
+                                                               episode: self
                                                               )
         topic_list.add(topic_name)
         save
