@@ -48,17 +48,14 @@
 .tab-content
   - if @episode.episode_timestamps.any?
     .timestamps.tab-pane.active#timestamps
-      %table.table.table-striped.table-hover.table-responsive
-        %th Timestamp
-        %th Description
-        %th Topic
-        - @episode.episode_timestamps.each do |timestamp|
-          %tr.timestamp 
-            %td.timestamp-seconds{data: {timestamp_seconds: timestamp.timestamp}}= timestamp.display_timestamp
-            %td.timestamp-description= timestamp.description.html_safe
-            %td.timestamp-topic
-              - timestamp.topic_list.each do |topic_name|
-                = link_to topic_name, episodes_path(by_topic: topic_name)
+      - @episode.episode_timestamps.each do |timestamp|
+        .timestamp 
+          .timestamp-seconds{data: {timestamp_seconds: timestamp.timestamp}}= timestamp.display_timestamp
+          .timestamp-topic.btn-default.btn-xs
+            - timestamp.topic_list.each do |topic_name|
+              = link_to topic_name, episodes_path(by_topic: topic_name)
+          .timestamp-description= timestamp.description.html_safe
+
   - else
     %i There are no timestamps yet.
   .wecks-entry.content.tab-pane#wecks
