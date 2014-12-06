@@ -38,6 +38,12 @@ form.navbar-form {
   padding-left: 0px;
 }
 
+.tab-content {
+    border-left: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+}
+
 // Episode Timestamps
 .timestamps {
     .timestamp:nth-child(odd) {
@@ -48,6 +54,7 @@ form.navbar-form {
     }
     .timestamp {
 	padding: 10px;
+	margin-right: 10px;
 	font-size: 13px;
 	.timestamp-seconds, .timestamp-topic, .timestamp-description {
 	    display: inline-block
