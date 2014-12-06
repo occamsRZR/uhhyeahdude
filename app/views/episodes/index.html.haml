@@ -8,6 +8,6 @@
       .col-md-3.col-sm-6.col-xs-12
         .episode
           .image
-          .episode-title= episode.title
+          .episode-title= link_to episode.title, episode_path(episode)
           .episode-date= episode.published_at.strftime("%d %b %y")
 .col-md-12= paginate @episodes
