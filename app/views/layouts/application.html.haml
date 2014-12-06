@@ -2,6 +2,7 @@
 %html
   %head
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
+    = yield :facebook_meta
     %title= content_for?(:title) ? yield(:title) : 'UYD Archive'
     %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Uhh Yeah Dude Archive'}"}
     = favicon_link_tag 'favicon.ico'
