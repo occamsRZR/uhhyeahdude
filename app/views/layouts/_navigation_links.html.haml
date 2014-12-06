@@ -1,0 +1,9 @@
+%li.search-bar= render 'shared/search_bar'
+- if user_signed_in?
+  %li= link_to 'Sign out', signout_path
+- else
+  %li= link_to 'Sign in', signin_path
+- if user_signed_in?
+  - if current_user.admin?
+    %li= link_to 'Admin', rails_admin.dashboard_path
+

@@ -1,9 +1,6 @@
-%h2 Episode Archive
+%h2 Search Results
 - if params[:by_topic]
   %h4= "Filtered by topic: #{params[:by_topic]}"
-- if params[:q]
-  %h4= "Searching using keyword: #{params[:q]}"
-= render 'shared/search_bar'
 = paginate @results
 %table.table.table-striped.table-hover.table-responsive
   - unless @results.empty?
