@@ -1,12 +1,13 @@
 %h2 Episode Archive
 - if params[:by_topic]
   %h4= "Filtered by topic: #{params[:by_topic]}"
-= paginate @episodes
-%table.table.table-striped.table-hover.table-responsive
-  %th Epi Number
-  %th Date
+.col-md-12= paginate @episodes
+.episodes
   - @episodes.each do |episode|
-    %tr.episode
-      %td.episode-name= link_to episode.title, episode_path(episode)
-      %td.episode-date= episode.published_at.strftime("%d %b %y")
-= paginate @episodes
+    = link_to episode_path(episode) do
+      .col-md-3.col-sm-6.col-xs-12
+        .episode
+          .image
+          .episode-title= episode.title
+          .episode-date= episode.published_at.strftime("%d %b %y")
+.col-md-12= paginate @episodes
