@@ -37,3 +37,39 @@ ul.nav.nav-tabs.episode-show {
 form.navbar-form {
   padding-left: 0px;
 }
+
+.tab-content {
+    border-left: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+}
+
+// Episode Timestamps
+.timestamps {
+    .timestamp:nth-child(odd) {
+	background-color: white;
+	.timestamp-topic {
+	    background-color: #eee;
+	}
+    }
+    .timestamp {
+	padding: 10px;
+	margin-right: 10px;
+	font-size: 13px;
+	.timestamp-seconds, .timestamp-topic, .timestamp-description {
+	    display: inline-block
+	}
+	.timestamp-seconds {
+	    font-weight: bold;
+	}
+	.timestamp-topic {
+	    margin-left: 5px;
+	    font-size: 10px;
+	    color: yellow;
+	}
+
+	.timestamp-description {
+	    margin-left: 5px;
+	}
+    }
+}
