@@ -2,7 +2,7 @@
 - if params[:by_topic]
   %h4= "Filtered by topic: #{params[:by_topic]}"
 .col-md-12= paginate @episodes
-.episodes
+.col-md-12.episodes
   - @episodes.each do |episode|
     = link_to episode_path(episode) do
       .col-md-3.col-sm-6.col-xs-12
@@ -10,4 +10,5 @@
           .image
           .episode-title= link_to episode.title, episode_path(episode)
           .episode-date= episode.published_at.strftime("%d %b %y")
+.clearfix
 .col-md-12= paginate @episodes
