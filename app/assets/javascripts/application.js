@@ -26,5 +26,8 @@
 //= require_tree ./models
 //= require_tree ./templates
 //= require_tree ./views
+//= require jquery.jplayer
 
-window.Uyd = Ember.Application.create();
+window.Uyd = Ember.Application.create({
+    rootElement: '#ember-player'
+});

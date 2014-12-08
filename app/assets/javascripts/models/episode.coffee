@@ -1,3 +1,5 @@
 Uyd.Episode = DS.Model.extend
   title: DS.attr 'string',
-  published_at: DS.attr 'date'
+  published_at: DS.attr 'date',
+  public_url: 'string'
+  

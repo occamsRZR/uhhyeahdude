@@ -33,6 +33,9 @@ gem 'ember-source', '1.5.0' # or the version you need
 gem 'chronic_duration'
 gem 'pg_search'
 gem 'acts_as_votable'
+
+gem 'jplayer-rails'
+
 group :development do
   gem 'better_errors'
   gem 'capistrano', '~> 3.1'

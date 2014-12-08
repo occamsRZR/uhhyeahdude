@@ -1,2 +1,20 @@
 <li>{{title}}</li>
 <li>{{published_at}}</li>
+<div id="public_url" >{{public_url}}</div>
+{{log public_url}}
+<script type="text/javascript">
+ $(document).ready(function(){
+  $("#jquery_jplayer_1").jPlayer({
+   ready: function () {
+    $(this).jPlayer("setMedia", {
+      mp3: $("#public_url").text()
+    });
+   },
+  });
+ });
+</script>
+<div id="jquery_jplayer_1"></div>
+<div id="jp_container_1">
+ <a href="#" class="jp-play">Play</a>
+ <a href="#" class="jp-pause">Pause</a>
+</div>
