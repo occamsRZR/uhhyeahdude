@@ -4,7 +4,8 @@ class EpisodesController < InheritedResources::Base
   has_scope :by_topic
   has_scope :search
   has_scope :page
-
+  respond_to :html, :json
+  
   def dope
     dope! do |format| 
       current_user.likes @episode

@@ -19,7 +19,12 @@
 //= require bootstrap-sprockets
 //= require google_analytics
 //= require facebook_comments
-window.Uyd = Ember.Application.create();
-//= require uyd
-//= require_tree .
+//= require_self
+//= require store
+//= require router
+//= require_tree ./controllers
+//= require_tree ./models
+//= require_tree ./templates
+//= require_tree ./views
 
+window.Uyd = Ember.Application.create();

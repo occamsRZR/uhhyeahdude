@@ -1,3 +1,4 @@
+
 .episode-title
   %h2= @episode.title
   %h5.aired-date= "Originally aired #{@episode.wecks_date_format}"
@@ -15,6 +16,8 @@
             Next
             %span.glyphicon.glyphicon-step-forward
   = render "media"
+%script{type: "text/x-handlebars", data: {template: {name: 'episode'}}}
+  .ember-js-outlet {{outlet episode}}
 - if @episode.description
   .description
     %b.description-label Description
