@@ -1,20 +1,77 @@
-<li>{{title}}</li>
-<li>{{published_at}}</li>
-<div id="public_url" >{{public_url}}</div>
-{{log public_url}}
-<script type="text/javascript">
- $(document).ready(function(){
-  $("#jquery_jplayer_1").jPlayer({
-   ready: function () {
-    $(this).jPlayer("setMedia", {
-      mp3: $("#public_url").text()
-    });
-   },
-  });
- });
-</script>
-<div id="jquery_jplayer_1"></div>
-<div id="jp_container_1">
- <a href="#" class="jp-play">Play</a>
- <a href="#" class="jp-pause">Pause</a>
+<div class="sm2-bar-ui compact flat">
+
+ <div class="bd sm2-main-controls">
+
+  <div class="sm2-inline-texture"></div>
+  <div class="sm2-inline-gradient"></div>
+
+  <div class="sm2-inline-element sm2-button-element">
+   <div class="sm2-button-bd">
+    <a  class="sm2-inline-button play-pause">Play / pause</a>
+   </div>
+  </div>
+
+  <div class="sm2-inline-element sm2-inline-status">
+
+   <div class="sm2-playlist">
+    <div class="sm2-playlist-target"><ul class="sm2-playlist-bd"><li><b>UYD</b> - {{title}}</li></ul></div>
+   </div>
+
+   <div class="sm2-progress">
+    <div class="sm2-row">
+    <div class="sm2-inline-time">0:00</div>
+     <div class="sm2-progress-bd">
+      <div class="sm2-progress-track">
+       <div class="sm2-progress-bar"></div>
+       <div class="sm2-progress-ball"><div class="icon-overlay"></div></div>
+      </div>
+     </div>
+     <div class="sm2-inline-duration">0:00</div>
+    </div>
+   </div>
+
+  </div>
+
+  <div class="sm2-inline-element sm2-button-element sm2-volume">
+   <div class="sm2-button-bd">
+    <span class="sm2-inline-button sm2-volume-control volume-shade"></span>
+    <a href="#volume" class="sm2-inline-button sm2-volume-control" style="clip: rect(0px 0px 42px 9.24px);">volume</a>
+   </div>
+  </div>
+
+ </div>
+
+ <div class="bd sm2-playlist-drawer sm2-element">
+
+  <div class="sm2-inline-texture">
+   <div class="sm2-box-shadow"></div>
+  </div>
+
+  <!-- playlist content is mirrored here -->
+
+  <div class="sm2-playlist-wrapper">
+    <ul class="sm2-playlist-bd">
+     <li class="selected"><a {{bind-attr href=public_url}}><b>UYD</b> - {{title}}</a></li>
+    </ul>
+  </div>
+
+ </div>
+
 </div>
+<script>
+soundManager.setup({
+  preferFlash: false,
+  onready: function() {
+    soundManager.createSound({
+      id: 'sm2-bar-ui',
+      url: 'https://uhhyeahdude-archive.s3.amazonaws.com/episodes/Episode%2070%20Jun%2021st%202007.mp3'
+      autoLoad: false,
+      autoPlay: false,
+      onload: function() {
+      alert('The sound '+this.id+' loaded!');
+    },
+    volume: 50
+    });
+  }
+});
+</script>

@@ -26,7 +26,7 @@
 //= require_tree ./models
 //= require_tree ./templates
 //= require_tree ./views
-//= require jquery.jplayer
+//= require soundmanager2-jsmin
 
 window.Uyd = Ember.Application.create({
     rootElement: '#ember-player'
