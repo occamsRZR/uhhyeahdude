@@ -1,10 +1,21 @@
 nav {
+    .navbar-header {
+	.search-bar {
+	    height: 50px;
+	    &.desktop {
+		float: left;
+	    }
+	}
+    }
     .navbar-collapse {
 	.right-links {
 	    float: right;
 	}
-    }
-    li.search-bar {
-	height: 50px;
+	&.in {
+	    float: none;
+	    .search-bar {
+		padding-left: 16px;
+	    }
+	}
     }
 }
