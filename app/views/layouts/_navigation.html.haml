@@ -9,7 +9,9 @@
         %span.icon-bar
       = link_to root_path, class: 'navbar-brand' do
         .archive-icon= image_tag 'archive-icon.png'
-      = link_to 'Episodes', episodes_path, class: 'navbar-brand'
+      .search-bar.hidden-xs.desktop= render 'shared/search_bar'
+
+      
     .collapse.navbar-collapse
       %ul.nav.navbar-nav.right-links
         = render 'layouts/navigation_links'
