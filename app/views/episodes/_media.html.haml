@@ -1,7 +1,4 @@
-- if @episode.media_type.eql? "audio"
-  %audio.audio{controls: 'controls', preload: 'none'}
-    %source{src: @episode.public_url}
-- elsif @episode.media_type.eql? "video"
+- if @episode.media_type.eql? "video"
   %video.video{controls: "controls", preload: 'none'}
     %source{src: @episode.public_url, type:'video/mp4'}
     %source{src: @episode.public_url.gsub("mp4", "ogg"), type:'video/ogv'}
