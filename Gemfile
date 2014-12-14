@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 ruby '2.1.1'
 gem 'rails', '4.1.4'
 gem 'sass-rails', '~> 4.0.3'
@@ -33,6 +34,7 @@ gem 'ember-source', '1.5.0' # or the version you need
 gem 'chronic_duration'
 gem 'pg_search'
 gem 'acts_as_votable'
+gem 'rails-assets-jplayer'
 group :development do
   gem 'better_errors'
   gem 'capistrano', '~> 3.1'
