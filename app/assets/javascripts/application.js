@@ -19,6 +19,7 @@
 //= require bootstrap-sprockets
 //= require google_analytics
 //= require facebook_comments
+//= require jplayer
 window.Uyd = Ember.Application.create();
 //= require uyd
 //= require_tree .

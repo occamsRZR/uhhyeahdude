@@ -10,8 +10,8 @@
       = link_to root_path, class: 'navbar-brand' do
         .archive-icon= image_tag 'archive-icon.png'
       .search-bar.hidden-xs.desktop= render 'shared/search_bar'
-
-      
+      - if @episode
+        .audio-player.hidden-xs.desktop= render 'shared/audio_player'
     .collapse.navbar-collapse
       %ul.nav.navbar-nav.right-links
         = render 'layouts/navigation_links'
