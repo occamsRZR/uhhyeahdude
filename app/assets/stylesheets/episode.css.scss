@@ -46,23 +46,38 @@ form.navbar-form {
 // Episode index
 .episodes {
     .episode {
-	&:hover {
-	    background-color: white;
+	box-shadow: 8px 8px 10px #5B5B5B;
+	width: 100%;
+	margin-bottom: 25px;
+	background-color: black;
+	.header-box {
+	    width: 100%;
+	    .image {
+		width: 100%;
+		content:asset_url('uyd-episode.png');
+	    }
 	}
-	margin-bottom: 10px;
-	.image {
-	    content:asset_url('archive-icon.png');
-	    float: left;
-	    margin-right: 10px;
-	}
-	.episode-title {
-	    font-weight: bold;
-	    color: black;
-	}
-	.episode-date {
-	    font-size: 11px;
-	    font-style: italics;
-	    color: black;
+	.episode-info {
+	    position: absolute;
+	    top: 0px;
+	    right: 15px;
+	    text-align: right;
+	    margin-right: 5px;
+	    text-shadow: 1px 1px 1px #6A6A6A;
+	    width: 75%;
+	    
+	    .episode-title {
+		margin-top: 0px;
+		a {
+		    font-weight: bold;
+		    color: #EAEAEA;
+		}
+	    }
+	    .episode-date {
+		font-size: 11px;
+		font-style: italics;
+		color: #EAEAEA;
+	    }
 	}
     }
 }
