@@ -1,10 +1,31 @@
-.episode-title {
-  margin-top: 10px;
-  h2 {
-  }
-  audio, video {
-    width: 100%;
-  } 
+// Episode Show view
+.episode-show {
+    margin-top: 10px;
+    .episode {
+	.episode-basic-info-box {
+	    background: black;
+	    box-shadow: 8px 8px 10px #5B5B5B;
+	    .episode-info {
+		.episode-title {
+		    color: white;
+		}
+	    }
+	}
+	.episode-description {
+	    font-size: 11px;
+	    ul::before {
+		content: "Links:";
+	    }
+	    ul {
+		margin-top: 5px;
+		li {
+		    display: inline-block;
+		    list-style-type: none;
+		    margin-left: 5px;
+		}
+	    }
+	}
+    }
 }
 
 ul.nav.nav-tabs.episode-show {
