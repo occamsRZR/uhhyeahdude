@@ -1,47 +1,47 @@
-.episode-title
-  %h2= @episode.title
-  %h5.aired-date= "Originally aired #{@episode.wecks_date_format}"
-  .playback-buttons.action-buttons.col-md-8.col-md-offset-4
-    - if @episode.prev
-      .col-xs-12.col-md-3.action-button
-        = link_to episode_path(@episode.prev) do
-          .btn.btn-primary.btn-block
-            %span.glyphicon.glyphicon-step-backward
-              Prev
-    - if @episode.next            
-      .col-xs-12.col-md-3.action-button
-        = link_to episode_path(@episode.next) do
-          .btn.btn-primary.btn-block
-            Next
-            %span.glyphicon.glyphicon-step-forward
+.episode-show.episodes
+  .episode.episode-basic-info.jp-audio#jp_container_1{"aria-label" => "media player", :role => "application"}
+    .episode-basic-info-box.col-md-4.col-push-right
+      .header-box
+        .image
+      .episode-info
+        .episode-title= @episode.title
+        .episode-date= @episode.published_at.strftime("%d %b %y")
+      .episode-playback
+        .playback-buttons.action-buttons
+        - if @episode.prev
+          .col-xs-12.col-md-3.action-button
+            = link_to episode_path(@episode.prev) do
+              %span.glyphicon.glyphicon-step-backward{title: @episode.prev.title}
+        .jp-pause.glyphicon.glyphicon-pause{:role => "button", :tabindex => "0"}
+        .jp-play.glyphicon.glyphicon-play{:role => "button", :tabindex => "0"}
+        - if @episode.next            
+          .col-xs-12.col-md-3.action-button
+            = link_to episode_path(@episode.next) do
+              %span.glyphicon.glyphicon-step-forward{title: @episode.next.title}
+        .action-buttons
+          = link_to dope_episode_path(@episode) do
+            .dope-link
+              %span.glyphicon.glyphicon-thumbs-up{title: 'Dope'}
+          .votes-total= @episode.cached_votes_score
+          = link_to nope_episode_path(@episode) do
+            .nope-link
+              %span.glyphicon.glyphicon-thumbs-down{title: 'Nope'}
+          .col-xs-12.col-md-2.action-button
+            = link_to(@episode.public_url, download: "uyd-episode-#{@episode.number}_#{@episode.wecks_date_format}.mp3", title: "Download") do
+              .fell-off-link
+                %span.glyphicon.glyphicon-download-alt
+    .episode-description.col-md-8
+      - if @episode.description
+        .description
+          %b.description-label Description
+          .description-text= @episode.description.html_safe
+      - unless @episode.topics.empty?
+        .topics
+          %b.topics-label Topics
+          .topic-list= @episode.topic_list.to_sentence || "There are no topics attributed to this episode yet."
   = render "media"
-- if @episode.description
-  .description
-    %b.description-label Description
-    .description-text= @episode.description.html_safe
-- unless @episode.topics.empty?
-  .topics
-    %b.topics-label Topics
-    .topic-list= @episode.topic_list.to_sentence || "There are no topics attributed to this episode yet."
 
-.action-buttons
-  .col-xs-12.col-md-2.col-md-offset-3.action-button
-    = link_to dope_episode_path(@episode) do
-      .dope-link.btn.btn-success.btn-block{class: can_vote}
-        %span.glyphicon.glyphicon-thumbs-up
-        = "Dope - #{@episode.cached_votes_up}"
-  .col-xs-12.col-md-2.action-button
-    = link_to nope_episode_path(@episode) do
-      .nope-link.btn.btn-danger.btn-block{class: can_vote }
-        %span.glyphicon.glyphicon-thumbs-down
-        = "Nope - #{@episode.cached_votes_down}"
-  .col-xs-12.col-md-2.action-button
-    = link_to(@episode.public_url, download: "uyd-episode-#{@episode.number}_#{@episode.wecks_date_format}.mp3") do
-      .fell-off-link.btn.btn-primary.btn-block
-        %span.glyphicon.glyphicon-download-alt
-        Download
-- unless current_user
-  %i.action-buttons-help Please sign in to vote
+.clearfix
 %ul.nav.nav-tabs.episode-show{role:"tablist"}
   %li.active= link_to "Timestamps", "#timestamps", role: "tab", data: {toggle: "tab"}
   %li= link_to "Weck's Entry", "#wecks", role: "tab", data: {toggle: "tab"}
