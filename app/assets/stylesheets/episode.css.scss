@@ -1,36 +1,112 @@
-.episode-title {
-  margin-top: 10px;
-  h2 {
-  }
-  audio, video {
-    width: 100%;
-  } 
-}
-
-ul.nav.nav-tabs.episode-show {
-  margin-top: 10px;
-}
-
-.tab-content {
-  padding-left: 8px;
-  padding-top: 10px;
-}
-
-#comments {
-  margin-top: 10px;
-}
-
-.action-buttons {
-  padding-top: 12px;
-  padding-bottom: 42px;
-  .action-button {
-    padding-bottom: 10px;
-  } 
-}
-
-.playback-buttons {
-  padding-bottom: 15px;
-  
+// Episode Show view
+.episode-show {
+    margin-top: 10px;
+    .episode {
+	box-shadow: none;
+	.episode-basic-info-box {
+	    background: black;
+	    box-shadow: 8px 8px 10px #5B5B5B;
+	    .header-box {
+		.episode-show-image {
+		    content:asset_url('uyd-episode.png');
+		}
+	    }
+	    .episode-info {
+		.episode-title {
+		    color: #EAEAEA;
+		}
+		.action-buttons {
+		    margin-top: 25px;
+		    margin-right: 5px;
+		    color: #EAEAEA;
+		    a {
+			color: #EAEAEA;
+		    }
+		    .votes-total {
+			padding-right: 2px;
+		    }
+		    .download-button {
+			margin-top: 5px;
+		    }
+		}
+	    }
+	    .episode-playback {
+		display: inline-block;
+		width: 100%;
+		text-align: center;
+		color: #EAEAEA;
+		a {
+		    color: #EAEAEA;
+		}
+		.playback-buttons {
+		    margin-bottom: 8px;
+		    .episode-prev, .episode-pause, .episode-play, .episode-next {
+			display: inline-block;
+		    }
+		    .episode-pause, .episode-play {
+			margin-left: 5px;
+			margin-right: 5px;
+			width: 50px;
+			height: 50px;
+			line-height: 48px;
+			border: 1px solid #f5f5f5;
+			border-radius: 50%;
+			text-decoration: none;
+			background: #262626;
+			box-shadow: 0 0 3px gray;
+			font-size: 20px;
+			&:hover {
+			    background: #464646;
+			}
+		    }
+		}
+	    }
+	}
+	.episode-description {
+	    font-size: 11px;
+	    ul::before {
+		content: "Links:";
+	    }
+	    ul {
+		margin-top: 5px;
+		li {
+		    display: inline-block;
+		    list-style-type: none;
+		    margin-left: 5px;
+		}
+	    }
+	}
+	.episode-playback-bar {
+	    .playback-time {
+		position: absolute;
+		width: 97.25%;
+		font-size: 10px;
+		margin-top: 5px;
+		.jp-current-time {
+		    float: left;
+		}
+		.jp-duration {
+		    float: right;
+		}
+	    }
+	    .jp-progress {
+		width: 100%;
+		margin-top: 20px;
+		margin-bottom: 10px;
+		height: 30px;
+		box-shadow: 0px 0px 1px #6a6a6a;
+		.jp-seek-bar {
+		    width: 100%;
+		    height: inherit;
+		    background: #AAAAAA;
+		    .jp-play-bar {
+			height: inherit;
+			background: #6a6a6a;
+		    }
+		}
+	    }
+	}
+    }
 }
 
 // Search
@@ -41,15 +117,20 @@ form.navbar-form {
     border-left: 1px solid #dddddd;
     border-right: 1px solid #dddddd;
     border-bottom: 1px solid #dddddd;
+    padding-left: 8px;
+    padding-top: 10px;
 }
 
 // Episode index
 .episodes {
     .episode {
-	box-shadow: 8px 8px 10px #5B5B5B;
+	& .episode-card {
+	    box-shadow: 8px 8px 10px #5B5B5B;
+	    background-color: black;
+	}
 	width: 100%;
 	margin-bottom: 25px;
-	background-color: black;
+
 	.header-box {
 	    width: 100%;
 	    .image {
