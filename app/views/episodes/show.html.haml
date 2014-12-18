@@ -1,23 +1,11 @@
 .episode-show.episodes
   .episode.episode-basic-info.jp-audio#jp_container_1{"aria-label" => "media player", :role => "application"}
-    .episode-basic-info-box.col-md-4.col-push-right
+    .episode-basic-info-box.col-md-3.col-sm-6.col-xs-12
       .header-box
-        .image
+        .episode-show-image
       .episode-info
         .episode-title= @episode.title
         .episode-date= @episode.published_at.strftime("%d %b %y")
-      .episode-playback
-        .playback-buttons.action-buttons
-        - if @episode.prev
-          .col-xs-12.col-md-3.action-button
-            = link_to episode_path(@episode.prev) do
-              %span.glyphicon.glyphicon-step-backward{title: @episode.prev.title}
-        .jp-pause.glyphicon.glyphicon-pause{:role => "button", :tabindex => "0"}
-        .jp-play.glyphicon.glyphicon-play{:role => "button", :tabindex => "0"}
-        - if @episode.next            
-          .col-xs-12.col-md-3.action-button
-            = link_to episode_path(@episode.next) do
-              %span.glyphicon.glyphicon-step-forward{title: @episode.next.title}
         .action-buttons
           = link_to dope_episode_path(@episode) do
             .dope-link
@@ -26,11 +14,23 @@
           = link_to nope_episode_path(@episode) do
             .nope-link
               %span.glyphicon.glyphicon-thumbs-down{title: 'Nope'}
-          .col-xs-12.col-md-2.action-button
+          .action-button.download-button
             = link_to(@episode.public_url, download: "uyd-episode-#{@episode.number}_#{@episode.wecks_date_format}.mp3", title: "Download") do
               .fell-off-link
                 %span.glyphicon.glyphicon-download-alt
-    .episode-description.col-md-8
+      .episode-playback
+        .playback-buttons.action-buttons
+          - if @episode.prev
+            .action-button.episode-prev
+              = link_to episode_path(@episode.prev) do
+                %span.glyphicon.glyphicon-step-backward{title: @episode.prev.title}
+          .jp-pause.glyphicon.glyphicon-pause.episode-pause{:role => "button", :tabindex => "0"}
+          .jp-play.glyphicon.glyphicon-play.episode-play{:role => "button", :tabindex => "0"}
+          - if @episode.next            
+            .action-button.episode-next
+              = link_to episode_path(@episode.next) do
+                %span.glyphicon.glyphicon-step-forward{title: @episode.next.title}
+    .episode-description.col-md-9.col-sm-6.col-xs-12
       - if @episode.description
         .description
           %b.description-label Description
@@ -39,6 +39,14 @@
         .topics
           %b.topics-label Topics
           .topic-list= @episode.topic_list.to_sentence || "There are no topics attributed to this episode yet."
+    .clearfix
+    .episode-playback-bar.col-md-12
+      .jp-progress
+        .jp-seek-bar#seekbar
+          .jp-play-bar#playbar
+        .playback-time
+          .jp-current-time
+          .jp-duration
   = render "media"
 
 .clearfix
