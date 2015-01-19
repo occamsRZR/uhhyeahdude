@@ -1,8 +1,70 @@
-%h3 Uhh Yeah Dude Archive
-%p= "All episodes found #{link_to 'here.', episodes_path}".html_safe
-%h4 Top 5 Dopest Episodes
-- dopest_five_episodes.each do |episode|
-  .dope-episode= link_to "#{episode.title}: #{episode.cached_votes_up}", episode_path(episode)
-%p= "Wiki entries scraped from #{link_to "Weck's wiki", "http://www.uhhyeahdude.com/wiki"}".html_safe
-%p= "Torrent of first 400 epis found #{link_to 'here.', 'http://thepiratebay.se/torrent/9825281/Uhh_Yeah_Dude_(Episodes_1-400)'}".html_safe
-%i seatbelts
+#homepage
+  %h1 Uhh Yeah Dude Episode Archive
+  %h4 Highest Voted Episodes
+  .episodes.highest-voted.col-md-12
+    - dopest_episodes(8).each do |episode|
+      = link_to episode_path(episode) do
+        .col-md-3.col-sm-4.col-xs-12
+          .episode.episode-card
+            .header-box
+              .image
+            .episode-info
+              .episode-title= link_to episode.title, episode_path(episode)
+              .episode-date= episode.published_at.strftime("%d %b %y")
+  %h4 Most Popular Episodes This Week
+  .episodes.most-popular.col-md-12
+    - most_popular_episodes(8).each do |episode|
+      = link_to episode_path(episode) do
+        .col-md-3.col-sm-4.col-xs-12
+          .episode.episode-card
+            .header-box
+              .image
+            .episode-info
+              .episode-title= link_to episode.title, episode_path(episode)
+              .episode-date= episode.published_at.strftime("%d %b %y")
+  .clearfix
+  %p= "Wiki entries scraped from #{link_to "Weck's wiki", "http://www.uhhyeahdude.com/wiki"}".html_safe
+  %i seatbelts
+
+:coffee
+  $ ->
+    $('.highest-voted').slick
+      slidesToShow: 4
+      responsive: [
+        {
+          breakpoint: 990
+          settings:
+            slidesToShow: 3
+        }
+        {
+          breakpoint: 768
+          settings:
+            slidesToShow: 2
+        }
+        {
+          breakpoint: 480
+          settings:
+            slidesToShow: 1
+            arrows: false
+        }
+      ]
+    $('.most-popular').slick
+      slidesToShow: 4
+      responsive: [
+        {
+          breakpoint: 990
+          settings:
+            slidesToShow: 3
+        }
+        {
+          breakpoint: 768
+          settings:
+            slidesToShow: 2
+        }
+        {
+          breakpoint: 480
+          settings:
+            slidesToShow: 1
+            arrows: false
+        }
+      ]

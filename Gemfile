@@ -35,6 +35,8 @@ gem 'chronic_duration'
 gem 'pg_search'
 gem 'acts_as_votable'
 gem 'rails-assets-jplayer'
+gem 'punching_bag'
+gem 'slick_rails'
 group :development do
   gem 'better_errors'
   gem 'capistrano', '~> 3.1'

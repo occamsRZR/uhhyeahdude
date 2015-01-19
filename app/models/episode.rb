@@ -18,7 +18,8 @@ class Episode < ActiveRecord::Base
 
   acts_as_votable
   acts_as_taggable_on :topics
-
+  acts_as_punchable
+  
   extend FriendlyId
   friendly_id :title, use: :slugged
 
