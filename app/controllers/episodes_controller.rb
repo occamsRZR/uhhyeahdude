@@ -1,5 +1,6 @@
 class EpisodesController < InheritedResources::Base
   custom_actions resource: [:dope, :nope]
+  after_filter :punch, only: :show
   has_scope :by_number, default: :asc, allow_blank: true, only: :index
   has_scope :by_topic
   has_scope :search
@@ -17,6 +18,10 @@ class EpisodesController < InheritedResources::Base
       current_user.dislikes @episode
       format.html {redirect_to :back}
     end
+  end
+
+  def punch
+    @episode.punch(request)
   end
 
   def annotate
