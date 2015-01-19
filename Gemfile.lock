@@ -171,6 +171,7 @@ GEM
       haml (>= 4.0.0.rc.1)
       hpricot (~> 0.8.6)
       ruby_parser (~> 3.1.1)
+    httpclient (2.6.0.1)
     hub (1.12.2)
     i18n (0.6.11)
     inflecto (0.0.2)
@@ -245,6 +246,9 @@ GEM
       pry
     puma (2.9.0)
       rack (>= 1.1, < 2.0)
+    punching_bag (0.4.0)
+      railties (>= 3.2, < 5)
+      voight_kampff (~> 0.2)
     pundit (0.2.3)
       activesupport (>= 3.0.0)
     quiet_assets (1.0.3)
@@ -330,6 +334,8 @@ GEM
       rubyzip (~> 1.0)
       websocket (~> 1.0.4)
     sexp_processor (4.4.4)
+    slick_rails (1.3.15)
+      railties (>= 3.1)
     slop (3.6.0)
     spring (1.1.3)
     sprockets (2.11.0)
@@ -361,6 +367,9 @@ GEM
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    voight_kampff (0.2.2)
+      httpclient (~> 2.2)
+      nokogiri (~> 1.6)
     websocket (1.0.7)
     xpath (2.0.0)
       nokogiri (~> 1.3)
@@ -408,6 +417,7 @@ DEPENDENCIES
   pry-rails
   pry-rescue
   puma
+  punching_bag
   pundit
   quiet_assets
   rails (= 4.1.4)
@@ -419,6 +429,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   selenium-webdriver
+  slick_rails
   spring
   therubyracer
   turbolinks
