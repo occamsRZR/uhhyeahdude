@@ -8,15 +8,25 @@ class EpisodesController < InheritedResources::Base
 
   def dope
     dope! do |format| 
-      current_user.likes @episode
-      format.html {redirect_to :back}
+      if current_user
+        current_user.likes @episode
+        format.html {redirect_to :back}
+      else
+        flash[:error] = "You must login before voting!"
+        format.html {redirect_to :back}
+      end
     end
   end
 
   def nope
     nope! do |format|
-      current_user.dislikes @episode
-      format.html {redirect_to :back}
+      if current_user
+        current_user.dislikes @episode
+        format.html {redirect_to :back}
+      else
+        flash[:error] = "You must login before voting!"
+        format.html {redirect_to :back}
+      end
     end
   end
 
