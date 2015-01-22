@@ -17,7 +17,11 @@ This application requires:
 Getting Started
 ---------------
 
-Before setting up your vagrant box, be sure to download the [latest version of VirtualBox](https://www.virtualbox.org/wiki/Downloads) and the [latest version of Vagrant](http://www.vagrantup.com/downloads.html)
+Before setting up your vagrant box, be sure to download the following:
+
+- the [latest version of VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+- the [latest version of Vagrant](http://www.vagrantup.com/downloads.html)
+- the [latest version of Chef Development Kit](http://downloads.getchef.com/chef-dk/)
 
 First, we'll need to go to the directory with the vagrant configuration:
 
@@ -25,7 +29,7 @@ First, we'll need to go to the directory with the vagrant configuration:
 
 We need to run the following commands to get all of the needed plugins.
 
-	vagrant plugin install vagrant-berkshelf --plugin-version=2.0.1
+	vagrant plugin install vagrant-berkshelf --plugin-version=3.0.1
 	vagrant plugin install hashie --plugin-version '< 3.0'
 	vagrant plugin install vagrant-omnibus
 

@@ -1,0 +1,31 @@
+#jplayer.jp-jplayer
+#jp_container_1.jp-audio{"aria-label" => "media player", :role => "application"}
+  .jp-type-single
+    .jp-gui.jp-interface
+      .jp-volume-controls
+        .jp-volume-bar
+          .jp-volume-bar-value
+      .jp-controls-holder
+        .jp-details
+          .jp-current-time{"aria-label" => "time", :role => "timer"} 
+          .jp-title{"aria-label" => "title"}
+          .jp-duration{"aria-label" => "duration", :role => "timer"}
+      .jp-progress
+        .jp-seek-bar
+          .jp-play-bar
+
+
+    .jp-no-solution
+      %span Update Required
+      To play the media you will need to either update your browser to a recent version or update your
+      = succeed "." do
+        %a{:href => "http://get.adobe.com/flashplayer/", :target => "_blank"} Flash plugin
+:coffeescript
+  $ ->
+    $('#jplayer').jPlayer
+      ready: (e) ->
+        $(@).jPlayer "setMedia",
+          title: "#{@episode.number}"
+          mp3: "#{@episode.public_url}"
+  
+  

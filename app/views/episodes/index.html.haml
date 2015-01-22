@@ -1,15 +1,17 @@
 %h2 Episode Archive
+.page-info #{page_entries_info @episodes}
 - if params[:by_topic]
   %h4= "Filtered by topic: #{params[:by_topic]}"
-- if params[:search]
-  %h4= "Searching using keyword: #{params[:search]}"
-= render 'search_bar'
-= paginate @episodes
-%table.table.table-striped.table-hover.table-responsive
-  %th Epi Number
-  %th Date
+.col-md-12= paginate @episodes
+.col-md-12.episodes
   - @episodes.each do |episode|
-    %tr.episode
-      %td.episode-name= link_to "Episode #{episode.number}", episode_path(episode)
-      %td.episode-date= episode.published_at.strftime("%d %b %y")
-= paginate @episodes
+    = link_to episode_path(episode) do
+      .col-md-3.col-sm-4.col-xs-12
+        .episode.episode-card
+          .header-box
+            .image
+          .episode-info
+            .episode-title= link_to episode.title, episode_path(episode)
+            .episode-date= episode.published_at.strftime("%d %b %y")
+.clearfix
+.col-md-12= paginate @episodes

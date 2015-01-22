@@ -1,11 +1,16 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 Vagrant.configure("2") do |config|
+
   config.vm.define "uyd-dev", primary: true do |dev|
     dev.vm.box = 'seatbelts-14.04'
     dev.vm.network :forwarded_port, guest: 3000, host: 3036
     dev.vm.network :private_network, ip: "33.33.33.6"
     dev.vm.synced_folder '../', '/home/vagrant/uyd/current', type: 'nfs'
+    dev.vm.provider "virtualbox" do |v|
+      v.memory = 1024
+      v.cpus = 2
+    end
     # all of the
     dev.vm.provision :chef_solo do |chef|
       chef.json = {

@@ -1,0 +1,29 @@
+nav {
+    .navbar-header {
+	.search-bar, .audio-player {
+	    height: 50px;
+	    &.desktop {
+		float: left;
+	    }
+	}
+	.audio-player {
+	    .play-pause {
+		float: left;
+	    }
+	    .time {
+		float: left;
+	    }
+	}
+    }
+    .navbar-collapse {
+	.right-links {
+	    float: right;
+	}
+	&.in {
+	    float: none;
+	    .search-bar {
+		padding-left: 16px;
+	    }
+	}
+    }
+}
