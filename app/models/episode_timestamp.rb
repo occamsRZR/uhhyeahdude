@@ -11,6 +11,9 @@ class EpisodeTimestamp < ActiveRecord::Base
   # Scopes
   ##
   default_scope { order(timestamp: :asc) }
+  # Search
+  include PgSearch
+  multisearchable against: :description
 
   def display_timestamp(format = :short)
     ChronicDuration.output(timestamp, format: format)

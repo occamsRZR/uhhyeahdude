@@ -1,33 +1,69 @@
-.episode-title
-  %h2= @episode.title
-  %h5.aired-date= "Originally aired #{@episode.wecks_date_format}"
-  %h5= link_to "Download epi", @episode.public_url, download: "uyd-episode-#{@episode.number}_#{@episode.wecks_date_format}.mp3"
+.episode-show.episodes
+  .episode.episode-basic-info.jp-audio#jp_container_1{"aria-label" => "media player", :role => "application"}
+    .episode-basic-info-box.col-md-3.col-sm-6.col-xs-12
+      .header-box
+        .episode-show-image
+      .episode-info
+        .episode-title= @episode.title
+        .episode-date= @episode.published_at.strftime("%d %b %y")
+        .action-buttons
+          = link_to dope_episode_path(@episode) do
+            .dope-link
+              %span.glyphicon.glyphicon-thumbs-up{title: 'Dope'}
+          .votes-total= @episode.cached_votes_score
+          = link_to nope_episode_path(@episode) do
+            .nope-link
+              %span.glyphicon.glyphicon-thumbs-down{title: 'Nope'}
+          .action-button.download-button
+            = link_to(@episode.public_url, download: "uyd-episode-#{@episode.number}_#{@episode.wecks_date_format}.mp3", title: "Download") do
+              .fell-off-link
+                %span.glyphicon.glyphicon-download-alt
+      .episode-playback
+        .playback-buttons.action-buttons
+          - if @episode.prev
+            .action-button.episode-prev
+              = link_to episode_path(@episode.prev) do
+                %span.glyphicon.glyphicon-step-backward{title: @episode.prev.title}
+          .jp-pause.glyphicon.glyphicon-pause.episode-pause{:role => "button", :tabindex => "0"}
+          .jp-play.glyphicon.glyphicon-play.episode-play{:role => "button", :tabindex => "0"}
+          - if @episode.next            
+            .action-button.episode-next
+              = link_to episode_path(@episode.next) do
+                %span.glyphicon.glyphicon-step-forward{title: @episode.next.title}
+    .episode-description.col-md-9.col-sm-6.col-xs-12
+      - if @episode.description
+        .description
+          %b.description-label Description
+          .description-text= @episode.description.html_safe
+      - unless @episode.topics.empty?
+        .topics
+          %b.topics-label Topics
+          .topic-list= @episode.topic_list.to_sentence || "There are no topics attributed to this episode yet."
+    .clearfix
+    .episode-playback-bar.col-md-12
+      .jp-progress
+        .jp-seek-bar#seekbar
+          .jp-play-bar#playbar
+        .playback-time
+          .jp-current-time
+          .jp-duration
   = render "media"
-- if @episode.description
-  .description
-    %b.description-label Description
-    .description-text= @episode.description.html_safe
-- unless @episode.topics.empty?
-  .topics
-    %b.topics-label Topics -
-    %i.topic-list= @episode.topic_list.to_sentence || "There are no topics attributed to this episode yet."
+
+.clearfix
 %ul.nav.nav-tabs.episode-show{role:"tablist"}
   %li.active= link_to "Timestamps", "#timestamps", role: "tab", data: {toggle: "tab"}
   %li= link_to "Weck's Entry", "#wecks", role: "tab", data: {toggle: "tab"}
 .tab-content
   - if @episode.episode_timestamps.any?
     .timestamps.tab-pane.active#timestamps
-      %table.table.table-striped.table-hover.table-responsive
-        %th Timestamp
-        %th Description
-        %th Topic
-        - @episode.episode_timestamps.each do |timestamp|
-          %tr.timestamp 
-            %td.timestamp-seconds{data: {timestamp_seconds: timestamp.timestamp}}= timestamp.display_timestamp
-            %td.timestamp-description= timestamp.description.html_safe
-            %td.timestamp-topic
-              - timestamp.topic_list.each do |topic_name|
-                = link_to topic_name, episodes_path(by_topic: topic_name)
+      - @episode.episode_timestamps.each do |timestamp|
+        .timestamp 
+          .timestamp-seconds{data: {timestamp_seconds: timestamp.timestamp}}= timestamp.display_timestamp
+          .timestamp-topic.btn-default.btn-xs
+            - timestamp.topic_list.each do |topic_name|
+              = link_to topic_name, episodes_path(by_topic: topic_name)
+          .timestamp-description= timestamp.description.html_safe
+
   - else
     %i There are no timestamps yet.
   .wecks-entry.content.tab-pane#wecks
@@ -37,3 +73,16 @@
     = render partial: 'annotate'
 #comments
   .fb-comments{data: {href: request.original_url, numposts: "20", colorscheme: "light", width: '100%'} }
+
+- content_for :facebook_meta do
+  %meta{property: "og:title", content: "UYD #{@episode.title}" }
+  - unless @episode.description.blank?
+    %meta{property: "og:description", content: truncate(@episode.description, length: 75, omission: "...", separator: " ")}
+  - else
+    %meta{property: "og:description", content: "The Uhh Yeah Dude dancecast #{@episode.title}"}
+  %meta{property: "og:image", content: image_url('uyd-fb-meta.jpg')}
+
+- content_for :title do 
+  UYD #{@episode.title}
+- content_for :description do
+  UYD #{@episode.title}

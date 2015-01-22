@@ -19,6 +19,8 @@
 //= require bootstrap-sprockets
 //= require google_analytics
 //= require facebook_comments
+//= require jplayer
+//= require slick
 window.Uyd = Ember.Application.create();
 //= require uyd
 //= require_tree .

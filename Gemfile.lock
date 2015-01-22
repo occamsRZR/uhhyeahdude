@@ -8,6 +8,7 @@ GIT
 
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     actionmailer (4.1.4)
       actionpack (= 4.1.4)
@@ -39,6 +40,7 @@ GEM
       tzinfo (~> 1.1)
     acts-as-taggable-on (3.3.0)
       activerecord (>= 3, < 5)
+    acts_as_votable (0.10.0)
     addressable (2.3.6)
     arel (5.0.1.20140414130214)
     barber (0.4.2)
@@ -48,8 +50,6 @@ GEM
     better_errors (1.1.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
-    binding_of_caller (0.7.2)
-      debug_inspector (>= 0.0.1)
     bootstrap-sass (3.2.0.1)
       sass (~> 3.2)
     bootstrap-wysihtml5-rails (0.3.1.24)
@@ -93,7 +93,6 @@ GEM
     coffee-script-source (1.7.1)
     colorize (0.7.3)
     database_cleaner (1.3.0)
-    debug_inspector (0.0.2)
     diff-lcs (1.2.5)
     ember-data-source (1.0.0.beta.9)
       ember-source
@@ -172,6 +171,7 @@ GEM
       haml (>= 4.0.0.rc.1)
       hpricot (~> 0.8.6)
       ruby_parser (~> 3.1.1)
+    httpclient (2.6.0.1)
     hub (1.12.2)
     i18n (0.6.11)
     inflecto (0.0.2)
@@ -246,6 +246,9 @@ GEM
       pry
     puma (2.9.0)
       rack (>= 1.1, < 2.0)
+    punching_bag (0.4.0)
+      railties (>= 3.2, < 5)
+      voight_kampff (~> 0.2)
     pundit (0.2.3)
       activesupport (>= 3.0.0)
     quiet_assets (1.0.3)
@@ -266,6 +269,9 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.4)
       sprockets-rails (~> 2.0)
+    rails-assets-jplayer (2.9.1)
+      rails-assets-jquery (>= 1.7.2)
+    rails-assets-jquery (2.1.1)
     rails_admin (0.6.2)
       builder (~> 3.1)
       coffee-rails (~> 4.0)
@@ -328,6 +334,8 @@ GEM
       rubyzip (~> 1.0)
       websocket (~> 1.0.4)
     sexp_processor (4.4.4)
+    slick_rails (1.3.15)
+      railties (>= 3.1)
     slop (3.6.0)
     spring (1.1.3)
     sprockets (2.11.0)
@@ -359,6 +367,9 @@ GEM
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    voight_kampff (0.2.2)
+      httpclient (~> 2.2)
+      nokogiri (~> 1.6)
     websocket (1.0.7)
     xpath (2.0.0)
       nokogiri (~> 1.3)
@@ -368,8 +379,8 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
+  acts_as_votable
   better_errors
-  binding_of_caller
   bootstrap-sass
   bootstrap-wysihtml5-rails (= 0.3.1.24)
   capistrano (~> 3.1)
@@ -406,9 +417,11 @@ DEPENDENCIES
   pry-rails
   pry-rescue
   puma
+  punching_bag
   pundit
   quiet_assets
   rails (= 4.1.4)
+  rails-assets-jplayer
   rails_admin
   rails_admin_pundit!
   rails_layout
@@ -416,6 +429,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   selenium-webdriver
+  slick_rails
   spring
   therubyracer
   turbolinks
