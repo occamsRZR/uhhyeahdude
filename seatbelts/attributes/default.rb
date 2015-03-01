@@ -28,11 +28,8 @@ default['rvm']['rvm_gem_options'] = '--no-rdoc --no-ri'
 default['rvm']['user_installs'] = [
 	{
 		user: node['seatbelts']['user'],
-		default_ruby: '2.1.1',
-		rubies: ['2.1.1'],
-                :global_gems =>  [
-                     {name: 'eye', version: '0.6.1'}
-                ]
+		default_ruby: '2.1.5',
+		rubies: ['2.1.5']
 	}
 ]
 

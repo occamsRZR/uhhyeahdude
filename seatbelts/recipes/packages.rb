@@ -20,6 +20,7 @@ include_recipe 'apt::default'
 # install packages
 package 'htop'
 package 'emacs24'
+package 'redis-server'
 ##
 # oh my zsh, rvm, and imagemagick
 include_recipe 'oh_my_zsh'

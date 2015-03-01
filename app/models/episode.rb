@@ -3,6 +3,12 @@ class Episode < ActiveRecord::Base
   # I guess you can only set default values for the second argument...
   scope :by_number, ->(cool, way = :asc) { order(number: way).order(slug: way) }
   scope :by_topic, ->(topic) { tagged_with(topic) }
+
+  has_attached_file :audio_track
+  validates_attachment_content_type :audio_track, content_type: /^audio/
+  has_attached_file :video
+  validates_attachment_content_type :video, content_type: /^video/
+  
   
   # Search stuffs
   include PgSearch
@@ -45,6 +51,25 @@ class Episode < ActiveRecord::Base
       .order(slug: :asc).first
   end
 
+  def download_episode
+    if media_type.eql? 'audio'
+      download_file 'audio_track'
+    elsif media_type.eql? 'video'
+      download_file 'video'
+    end
+  end
+
+  # Downloads the file as a temp file
+  # saves it to the model file_type passed in
+  # => file_type - can be :audio_track or :video
+  def download_file(file_type)
+    temp_file = File.new(public_url.split('/').last, "wb")
+    remote_data = open(URI.parse(public_url))
+    temp_file.write(remote_data.read)
+    update_attributes(file_type => temp_file)
+    File.delete temp_file
+  end
+  
   def parse_timestamps
     unparsed = 0
     nodescription = 0

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
-ruby '2.1.1'
+ruby '2.1.5'
 gem 'rails', '4.1.4'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
@@ -20,7 +20,7 @@ gem 'pg'
 gem 'puma'
 gem 'pundit'
 gem 'therubyracer', :platform=>:ruby
-gem 'rails_admin'
+gem 'rails_admin', '~> 0.6.6'
 gem 'bootstrap-wysihtml5-rails', '0.3.1.24'
 gem 'fog'
 gem 'inherited_resources', '~> 1.5.0'
@@ -37,6 +37,9 @@ gem 'acts_as_votable'
 gem 'rails-assets-jplayer'
 gem 'punching_bag'
 gem 'slick_rails'
+gem 'paperclip'
+gem 'sidekiq'
+gem 'sinatra', require: nil
 group :development do
   gem 'better_errors'
   gem 'capistrano', '~> 3.1'
@@ -49,6 +52,7 @@ group :development do
   gem 'hub', :require=>nil
   gem 'quiet_assets'
   gem 'rails_layout'
+  gem 'foreman'
 end
 group :development, :test do
   gem 'factory_girl_rails'
