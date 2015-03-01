@@ -1,4 +1,4 @@
-class EpisodesController < InheritedResources::Base
+class EpisodesController < ApplicationController
   custom_actions resource: [:dope, :nope]
   after_filter :punch, only: :show
   has_scope :by_number, default: :asc, allow_blank: true, only: :index

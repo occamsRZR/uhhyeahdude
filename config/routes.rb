@@ -15,4 +15,7 @@ Rails.application.routes.draw do
       get :nope
     end
   end
+
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
 end
