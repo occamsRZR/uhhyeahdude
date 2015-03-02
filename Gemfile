@@ -40,6 +40,7 @@ gem 'slick_rails'
 gem 'paperclip'
 gem 'sidekiq'
 gem 'sinatra', require: nil
+gem 'feedjira'
 group :development do
   gem 'better_errors'
   gem 'capistrano', '~> 3.1'

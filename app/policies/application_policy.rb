@@ -58,6 +58,10 @@ class ApplicationPolicy
         @current_user.admin?
       when :show_in_app
         @current_user.admin?
+      when :download_episode
+        @current_user.admin?
+      when :check_rss_feed
+        @current_user.admin?
       else
         raise ::Pundit::NotDefinedError, "unable to find policy #{action} for #{record}."
     end

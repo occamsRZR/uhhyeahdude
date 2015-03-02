@@ -69,6 +69,14 @@ class Episode < ActiveRecord::Base
     update_attributes(file_type => temp_file)
     File.delete temp_file
   end
+
+  def audio_url
+    if audio_track_file_name
+      audio_track.url
+    else
+      public_url
+    end
+  end
   
   def parse_timestamps
     unparsed = 0

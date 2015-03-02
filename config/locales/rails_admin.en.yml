@@ -1,0 +1,13 @@
+en:
+  admin:
+    actions:
+      download_episode:
+        title: 'Enqueue Episode Download'
+        menu: 'Download Episode'
+        breadcrumb: 'Enqueue Episode Download'
+        link: 'Enqueue Episode Download'
+      check_rss_feed:
+        title: 'Check RSS Feed'
+        menu: 'Check RSS Feed'
+        breadcrumb: 'Check RSS Feed'
+        link: 'Check RSS Feed'
