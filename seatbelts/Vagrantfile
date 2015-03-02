@@ -1,10 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 Vagrant.configure("2") do |config|
-
-  config.vm.provider :virtualbox do |vb|
-    vb.gui = true
-  end
   
   config.vm.define "uyd-dev", primary: true do |dev|
     dev.vm.box = 'seatbelts-14.04'
