@@ -1,8 +1,5 @@
 default['seatbelts']['user'] = 'seatbelts'
-default['seatbelts']['password'] = 'bhagavad'
-default['seatbelts']['postgres_password'] = 'wTCw9s4CKmPNQFEKmG'
-default['seatbelts']['group'] = 'gita'
-default['seatbelts']['site_name'] = 'uyd'
+default['seatbelts']['site_name'] = 'uyd-archives'
 default['seatbelts']['deploy_path'] = "/home/#{node['seatbelts']['user']}/#{node['seatbelts']['site_name']}/current"
 
 default['oh_my_zsh'][:users] = [{
@@ -27,21 +24,14 @@ default['rvm']['branch'] = 'none'
 default['rvm']['rvm_gem_options'] = '--no-rdoc --no-ri'
 default['rvm']['user_installs'] = [
 	{
-		user: node['seatbelts']['user'],
-		default_ruby: '2.1.5',
-		rubies: ['2.1.5']
+		user: node['seatbelts']['user']
 	}
 ]
 
 # WEBSERVER
 default['nginx']['user'] = node['seatbelts']['user']
 default['nginx']['enable_default_site'] = false
-default['seatbelts']['puma_instances'] = 2
 default['languages']['ruby']['bin_dir'] = node.rvm.default_ruby
-default['eye']['http']['install'] = false
-default['eye']['user'] = node.seatbelts.user
-default['eye']['group'] = node.seatbelts.user
-default['eye']['bin'] = '/home/vagrant/.rvm/bin/uyd_eye'
 # DATABASE
 default['postgresql']['version'] = '9.3'
 default['postgresql']['password'] = {

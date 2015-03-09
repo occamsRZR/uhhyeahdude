@@ -16,7 +16,7 @@
 #  - imagemagick: for image processing
 include_recipe 'apt::default'
 
-##
+##V
 # install packages
 package 'htop'
 package 'emacs24'

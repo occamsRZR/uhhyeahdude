@@ -1,5 +1,5 @@
 upstream <%= node['seatbelts']['site_name'] %> {
-  <% node['seatbelts']['puma_instances'].times do |i| %>
+  <% 2.times do |i| %>
     server unix://<%= node.seatbelts.deploy_path %>/tmp/sockets/puma.<%= i %>.sock;
   <% end %>
 }
