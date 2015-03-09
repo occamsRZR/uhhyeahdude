@@ -16,6 +16,10 @@
 #  - imagemagick: for image processing
 include_recipe 'apt::default'
 
+execute 'apt-get update' do
+  action :nothing
+end.run_action(:run)
+
 ##V
 # install packages
 package 'htop'

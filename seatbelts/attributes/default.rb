@@ -1,9 +1,9 @@
-default['seatbelts']['user'] = 'seatbelts'
+default['seatbelts']['user'] = 'ubuntu'
 default['seatbelts']['site_name'] = 'uyd-archives'
 default['seatbelts']['deploy_path'] = "/home/#{node['seatbelts']['user']}/#{node['seatbelts']['site_name']}/current"
 
 default['oh_my_zsh'][:users] = [{
-	login: node['seatbelts']['user'],
+	login: 'root',
 	theme: 'gnzh',
 	plugins: ['gem', 'git', 'rails', 'redis-cli', 'rvm', 'bundler', 'debian']
 }]
