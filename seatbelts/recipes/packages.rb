@@ -17,6 +17,11 @@
 include_recipe 'apt::default'
 
 ##
+execute 'apt-get update' do
+  action :nothing
+end.run_action(:run)
+
+##
 # install packages
 package 'htop'
 package 'emacs24'

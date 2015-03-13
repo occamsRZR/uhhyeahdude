@@ -22,7 +22,7 @@ user node['seatbelts']['user'] do
   home "/home/#{node['seatbelts']['user']}"
 end
 
-# make the seatbelts user's directory available to the gita group
+# make the seatbelts user's directory available to the group
 directory "/home/#{node['seatbelts']['user']}" do
   owner node['seatbelts']['user']
   mode 0774

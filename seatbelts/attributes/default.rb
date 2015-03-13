@@ -1,12 +1,17 @@
-default['seatbelts']['user'] = 'seatbelts'
-default['seatbelts']['password'] = 'bhagavad'
 default['seatbelts']['postgres_password'] = 'wTCw9s4CKmPNQFEKmG'
 default['seatbelts']['group'] = 'gita'
 default['seatbelts']['site_name'] = 'uyd'
 default['seatbelts']['deploy_path'] = "/home/#{node['seatbelts']['user']}/#{node['seatbelts']['site_name']}/current"
 
 default['oh_my_zsh'][:users] = [{
-	login: node['seatbelts']['user'],
+	login: node['seatbelts']['user']
+                                }]
+default['seatbelts']['user'] = 'ubuntu'
+default['seatbelts']['site_name'] = 'uyd-archives'
+default['seatbelts']['deploy_path'] = "/home/#{node['seatbelts']['user']}/#{node['seatbelts']['site_name']}/current"
+
+default['oh_my_zsh'][:users] = [{
+	login: 'root',
 	theme: 'gnzh',
 	plugins: ['gem', 'git', 'rails', 'redis-cli', 'rvm', 'bundler', 'debian']
 }]
@@ -15,12 +20,6 @@ default['seatbelts']['psql_connection_info'] = {
 	username: 'postgres',
 	password: 'toor'
 }
-default['seatbelts']['mysql_connection_info'] = {
-	host: 'localhost',
-	username: 'root',
-	password: 'toor'
-}
-default['mysql']['server_root_password'] = 'toor'
 
 # RVM
 default['rvm']['branch'] = 'none'
@@ -30,6 +29,7 @@ default['rvm']['user_installs'] = [
 		user: node['seatbelts']['user'],
 		default_ruby: '2.1.5',
 		rubies: ['2.1.5']
+		user: node['seatbelts']['user']
 	}
 ]
 
@@ -42,6 +42,7 @@ default['eye']['http']['install'] = false
 default['eye']['user'] = node.seatbelts.user
 default['eye']['group'] = node.seatbelts.user
 default['eye']['bin'] = '/home/vagrant/.rvm/bin/uyd_eye'
+default['languages']['ruby']['bin_dir'] = node.rvm.default_ruby
 # DATABASE
 default['postgresql']['version'] = '9.3'
 default['postgresql']['password'] = {

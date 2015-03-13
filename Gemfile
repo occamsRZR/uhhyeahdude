@@ -41,6 +41,7 @@ gem 'paperclip'
 gem 'sidekiq'
 gem 'sinatra', require: nil
 gem 'feedjira'
+gem 'whenever', require: false
 group :development do
   gem 'better_errors'
   gem 'capistrano', '~> 3.1'
