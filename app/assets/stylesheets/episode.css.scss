@@ -1,4 +1,5 @@
 // Episode Show view
+
 .episode-show {
     margin-top: 10px;
     .episode {
@@ -6,14 +7,6 @@
 	.episode-basic-info-box {
 	    background: black;
 	    box-shadow: 8px 8px 10px #5B5B5B;
-	    .header-box {
-		.episode-show-image {
-		    height: 170px;
-		    content:asset_url('uyd-episode-index-icon.png');
-		    background: asset_url('uyd-episode-index-icon.png');
-		    background-repeat: no-repeat;
-		}
-	    }
 	    .episode-info {
 		.episode-title {
 		    color: #EAEAEA;
@@ -112,6 +105,15 @@
     }
 }
 
+// Image settings for the cards
+.episode-show .episode-basic-info-box .header-box .episode-show-image, .episodes .episode .header-box .image {
+    width: 200px;
+    height: 150px;
+    content:asset_url('uyd-episode-index-icon.png');
+    background-image: asset_url('uyd-episode-index-icon.png');
+    background-repeat: no-repeat;
+}
+
 // Search
 form.navbar-form {
   padding-left: 0px;
@@ -137,13 +139,6 @@ form.navbar-form {
 
 	.header-box {
 	    width: 100%;
-	    .image {
-		width: 100%;
-		height: 170px;
-		content:asset_url('uyd-episode-index-icon.png');
-		background: asset_url('uyd-episode-index-icon.png');
-		background-repeat: no-repeat;
-	    }
 	}
 	.episode-info {
 	    position: absolute;

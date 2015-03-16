@@ -1,7 +1,7 @@
 default['seatbelts']['postgres_password'] = 'wTCw9s4CKmPNQFEKmG'
 default['seatbelts']['group'] = 'gita'
+default['seatbelts']['password'] = '2006forlife'
 default['seatbelts']['site_name'] = 'uyd'
-default['seatbelts']['deploy_path'] = "/home/#{node['seatbelts']['user']}/#{node['seatbelts']['site_name']}/current"
 
 default['oh_my_zsh'][:users] = [{
 	login: node['seatbelts']['user']
@@ -14,6 +14,11 @@ default['oh_my_zsh'][:users] = [{
 	login: 'root',
 	theme: 'gnzh',
 	plugins: ['gem', 'git', 'rails', 'redis-cli', 'rvm', 'bundler', 'debian']
+                                },
+{
+  login: 'ubuntu',
+  theme: 'gnzh',
+  plugins: ['gem', 'git', 'rails', 'redis-cli', 'rvm', 'bundler', 'debian']
 }]
 default['seatbelts']['psql_connection_info'] = {
 	host: 'localhost',
@@ -29,7 +34,6 @@ default['rvm']['user_installs'] = [
 		user: node['seatbelts']['user'],
 		default_ruby: '2.1.5',
 		rubies: ['2.1.5']
-		user: node['seatbelts']['user']
 	}
 ]
 

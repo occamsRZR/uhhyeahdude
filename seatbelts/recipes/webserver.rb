@@ -30,13 +30,5 @@ include_recipe 'rvm'
 rvm_wrapper node.seatbelts.site_name do
   ruby_string "2.1.5@#{node.seatbelts.site_name}"
   user node.seatbelts.user
-  binary 'pumactl'
-end
-
-
-# wrapper for puma
-rvm_wrapper node.seatbelts.site_name do
-  ruby_string "2.1.5@#{node.seatbelts.site_name}"
-  user node.seatbelts.user
-  binary 'puma'
+  binaries %w(pumactl puma bundle)
 end

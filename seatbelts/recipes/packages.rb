@@ -30,5 +30,11 @@ package 'redis-server'
 # oh my zsh, rvm, and imagemagick
 include_recipe 'oh_my_zsh'
 include_recipe 'rvm::user'
+include_recipe 'rvm::system_install'
 include_recipe 'imagemagick'
 
+rvm_ruby 'ruby-2.1.5' do
+  action :install
+end
+# needed for a gem
+package 'libcurl4-openssl-dev'

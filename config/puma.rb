@@ -5,8 +5,14 @@ threads threads_count, threads_count
 preload_app!
 
 rackup      DefaultRackup
-port        ENV['PORT']     || 3000
-environment ENV['RACK_ENV'] || 'development'
+
+environment ENV['RAILS_ENV'] || 'development'
+
+bind 'unix://tmp/sockets/puma.sock'
+pidfile 'tmp/pids/puma.pid'
+state_path 'tmp/puma.state'
+
+activate_control_app 'unix://tmp/sockets/pumactl.sock'
 
 on_worker_boot do
   # Worker specific setup for Rails 4.1+
