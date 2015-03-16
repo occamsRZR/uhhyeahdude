@@ -49,7 +49,7 @@ group :development do
   gem 'capistrano-rails', '~> 1.1.0'
   gem 'capistrano-rails-console'
   gem 'capistrano-rvm', '~> 0.1.1'
-  gem 'capistrano-eye'
+  gem 'capistrano-service'
   gem 'html2haml'
   gem 'hub', :require=>nil
   gem 'quiet_assets'

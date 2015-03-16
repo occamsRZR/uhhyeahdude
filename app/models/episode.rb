@@ -77,6 +77,14 @@ class Episode < ActiveRecord::Base
       public_url
     end
   end
+
+  def audio_download_url
+    if audio_track_file_name
+      audio_track.url(:original, false)
+    else
+      public_url
+    end
+  end
   
   def parse_timestamps
     unparsed = 0

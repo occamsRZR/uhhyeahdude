@@ -18,13 +18,6 @@ set :linked_dirs, %w{log tmp/pids tmp/sockets tmp/cache tmp/sockets vendor/bundl
 
 namespace :deploy do
 
-  desc 'Restart application'
-  task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      run 'sudo uyd_eye restart uyd'
-    end
-  end
-
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:

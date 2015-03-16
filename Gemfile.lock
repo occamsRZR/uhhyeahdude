@@ -62,9 +62,6 @@ GEM
     capistrano-bundler (1.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
-    capistrano-eye (0.0.2)
-      capistrano (~> 3.1)
-      sshkit (~> 1.2)
     capistrano-rails (1.1.0)
       capistrano (>= 3.0.0)
       capistrano-bundler (>= 1.0.0)
@@ -73,6 +70,8 @@ GEM
     capistrano-rvm (0.1.1)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    capistrano-service (0.0.2)
+      capistrano (>= 3.0.0.pre)
     capybara (2.4.1)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -661,10 +660,10 @@ DEPENDENCIES
   bootstrap-wysihtml5-rails (= 0.3.1.24)
   capistrano (~> 3.1)
   capistrano-bundler
-  capistrano-eye
   capistrano-rails (~> 1.1.0)
   capistrano-rails-console
   capistrano-rvm (~> 0.1.1)
+  capistrano-service
   capybara
   chronic_duration
   coffee-rails (~> 4.0.0)

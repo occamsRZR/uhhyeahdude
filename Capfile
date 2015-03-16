@@ -5,6 +5,10 @@ require 'capistrano/setup'
 require 'capistrano/deploy'
 require 'capistrano/rails'
 require 'capistrano/rvm'
+
+set :services, [:uyd, :nginx]
+
+require 'capistrano/service'
 #require 'capistrano/eye'
 
 # Includes tasks from other gems included in your Gemfile

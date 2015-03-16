@@ -15,7 +15,7 @@
             .nope-link
               %span.glyphicon.glyphicon-thumbs-down{title: 'Nope'}
           .action-button.download-button
-            = link_to(@episode.audio_url, download: "uyd-episode-#{@episode.number}_#{@episode.wecks_date_format}.mp3", title: "Download") do
+            = link_to(@episode.audio_download_url, download: "uyd-episode-#{@episode.number}_#{@episode.wecks_date_format}.mp3", title: "Download") do
               .fell-off-link
                 %span.glyphicon.glyphicon-download-alt
       .episode-playback
