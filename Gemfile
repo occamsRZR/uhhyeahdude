@@ -42,6 +42,8 @@ gem 'sidekiq'
 gem 'sinatra', require: nil
 gem 'feedjira'
 gem 'whenever', require: false
+
+gem 'rack-cors', :require => 'rack/cors'
 group :development do
   gem 'better_errors'
   gem 'capistrano', '~> 3.1'
