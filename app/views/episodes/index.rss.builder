@@ -10,7 +10,7 @@ xml.rss "xmlns:itunes" => "http://www.itunes.com/dtds/podcast-1.0.dtd",  "xmlns:
         xml.description episode.description
         xml.pubDate episode.published_at.to_s(:rfc822)
         xml.enclosure :url => episode.public_url, :type => 'audio/mpeg3'
-        xml.link episode.public_url
+        xml.link episode.audio_url
         xml.guid episode_url(episode)
       end
     end
