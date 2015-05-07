@@ -1,8 +1,7 @@
 # coding: utf-8
 class Episode < ActiveRecord::Base
   # I guess you can only set default values for the second argument...
-  scope :by_number, ->(cool, way = :asc) { order(number: way).order(slug: way) }
-  scope :by_direction, ->(direction) { order(number: direction.to_sym).order(slug: direction.to_sym)}
+  scope :by_direction, ->(direction = :asc) { order(number: direction.to_sym).order(slug: direction.to_sym)}
   scope :by_topic, ->(topic) { tagged_with(topic) }
 
   has_attached_file :audio_track
