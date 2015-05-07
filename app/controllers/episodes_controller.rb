@@ -45,7 +45,7 @@ class EpisodesController < ApplicationController
   
   protected
   def collection
-    if params[:all_episodes] and params[:format].eql? :rss
+    if params[:all_episodes] and params[:format].eql? 'rss'
       @episodes ||= end_of_association_chain
     else
       @episodes ||= end_of_association_chain.page(params[:page])
