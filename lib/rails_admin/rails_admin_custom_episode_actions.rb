@@ -41,8 +41,8 @@ module RailsAdmin
 
         register_instance_option :controller do
           Proc.new do
-            EpisodeDownloadWorker.perform_async(@object.slug)
-            flash[:notice] = "Episode #{@object.number} was enqueued for download."
+            RSSFeedUpdaterWorker.perform_async
+            flash[:notice] = "Performing Sync on the RSS feed"
             redirect_to rails_admin.index_path('episode')
           end
         end
