@@ -2,7 +2,7 @@ class EpisodesController < ApplicationController
   respond_to :html, :json
   custom_actions resource: [:dope, :nope]
   after_filter :punch, only: :show
-  has_scope :by_number, default: :asc, allow_blank: true, only: :index
+  has_scope :by_direction
   has_scope :by_topic
   has_scope :search
   has_scope :page
