@@ -1,7 +1,8 @@
 class EpisodesController < ApplicationController
+  respond_to :html, :json, :rss
   custom_actions resource: [:dope, :nope]
   after_filter :punch, only: :show
-  has_scope :by_number, default: :asc, allow_blank: true, only: :index
+  has_scope :by_direction, default: 'asc', allow_blank: true, only: :index
   has_scope :by_topic
   has_scope :search
   has_scope :page
@@ -43,7 +44,11 @@ class EpisodesController < ApplicationController
   end
   
   protected
-    def collection
+  def collection
+    if params[:all_episodes] and params[:format].eql? 'rss'
+      @episodes ||= end_of_association_chain
+    else
       @episodes ||= end_of_association_chain.page(params[:page])
     end
+  end
 end

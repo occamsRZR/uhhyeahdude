@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20150222091325) do
   enable_extension "plpgsql"
   enable_extension "unaccent"
 
-  create_table "episode_timestamps", force: :cascade do |t|
+  create_table "episode_timestamps", force: true do |t|
     t.integer  "timestamp"
     t.text     "description"
     t.integer  "episode_id"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20150222091325) do
 
   add_index "episode_timestamps", ["episode_id"], name: "index_episode_timestamps_on_episode_id", using: :btree
 
-  create_table "episodes", force: :cascade do |t|
+  create_table "episodes", force: true do |t|
     t.string   "title"
     t.text     "description"
     t.string   "public_url"
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20150222091325) do
   add_index "episodes", ["cached_weighted_total"], name: "index_episodes_on_cached_weighted_total", using: :btree
   add_index "episodes", ["slug"], name: "index_episodes_on_slug", unique: true, using: :btree
 
-  create_table "friendly_id_slugs", force: :cascade do |t|
+  create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
     t.string   "sluggable_type", limit: 50
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20150222091325) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
-  create_table "pg_search_documents", force: :cascade do |t|
+  create_table "pg_search_documents", force: true do |t|
     t.text     "content"
     t.integer  "searchable_id"
     t.string   "searchable_type"
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20150222091325) do
     t.datetime "updated_at",      null: false
   end
 
-  create_table "punches", force: :cascade do |t|
+  create_table "punches", force: true do |t|
     t.integer  "punchable_id",                          null: false
     t.string   "punchable_type", limit: 20,             null: false
     t.datetime "starts_at",                             null: false
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 20150222091325) do
   add_index "punches", ["average_time"], name: "index_punches_on_average_time", using: :btree
   add_index "punches", ["punchable_type", "punchable_id"], name: "punchable_index", using: :btree
 
-  create_table "taggings", force: :cascade do |t|
+  create_table "taggings", force: true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
     t.string   "taggable_type"
@@ -111,14 +111,14 @@ ActiveRecord::Schema.define(version: 20150222091325) do
   add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
   add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
 
-  create_table "tags", force: :cascade do |t|
+  create_table "tags", force: true do |t|
     t.string  "name"
     t.integer "taggings_count", default: 0
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: true do |t|
     t.string   "name"
     t.string   "provider"
     t.string   "uid"
@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(version: 20150222091325) do
     t.integer  "role"
   end
 
-  create_table "votes", force: :cascade do |t|
+  create_table "votes", force: true do |t|
     t.integer  "votable_id"
     t.string   "votable_type"
     t.integer  "voter_id"
