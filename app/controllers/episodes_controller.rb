@@ -1,5 +1,5 @@
 class EpisodesController < ApplicationController
-  respond_to :html, :json, :rss
+  respond_to :html, :json, :rss, :xml
   custom_actions resource: [:dope, :nope]
   after_filter :punch, only: :show
   has_scope :by_direction, default: 'asc', allow_blank: true, only: :index
